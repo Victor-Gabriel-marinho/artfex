@@ -1,20 +1,22 @@
-
 import './App.css';
+import Home from "./pages/Home/Home";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
+
+//Router
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
+
+// Pages
 function App() {
   return (
     <div className="App">
-        <header>
-            <nav>
-                <ul>
-                  <li><a href="#">Home</a></li>
-                  <li>Menu</li>
-                </ul>
-                <ul>
-                  <li><a href="#">Parceiros</a></li>
-                  <li>Mais</li>
-                </ul>
-            </nav>
-        </header>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={ <Home />} />
+            <Route path='/login' element={ <Login />} />
+            <Route path='/register' element={ <Register />} />
+          </Routes>
+        </BrowserRouter>
     </div>
   );
 }
