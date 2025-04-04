@@ -4,7 +4,7 @@ import "./Auth.css";
 import {Link} from 'react-router-dom'
 
 //Hooks
-import { useState, useEffect } from "react";
+// import { UseState, UseEffect } from "react";
 
 const Register = () => {
 
