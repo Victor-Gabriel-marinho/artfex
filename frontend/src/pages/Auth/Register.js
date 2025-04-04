@@ -13,7 +13,7 @@ const Register = () => {
   }
 
   return (
-    <div>
+    <div id="register">
       <h2>Artfex</h2>
       <p className="subtitle">Cadastre-se</p>
       <div className="container">
