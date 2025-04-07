@@ -5,6 +5,8 @@ body {
   box-sizing: border-box;
   padding: 5px;
   width: 100vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 a {
