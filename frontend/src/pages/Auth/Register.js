@@ -36,8 +36,8 @@ const Register = () => {
       <div className="container">
 
         <section className="register--left">
-          <h1>Artfex <br />
-          <span>o melhor para sua arte</span></h1>
+          <h1><span className="name--project">Artfex</span> <br />
+          o melhor para sua arte</h1>
         </section>
 
         <section className="register--rigth">

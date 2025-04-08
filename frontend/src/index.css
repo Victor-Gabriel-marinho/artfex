@@ -53,7 +53,7 @@ label span {
 input {
   background-color: #2f4b3c69;
   color: #AAA;
-  border: 1px solid #555;
+  border: none;
   border-radius: 10px;
   padding: 13px 8px;
   outline: none;
@@ -61,7 +61,15 @@ input {
 }
 
 input::placeholder {
-  color: #AAA;
+  color: var(--pCor);
+}
+
+input {
+  color: var(--pCor);
+}
+
+input:focus {
+  color: var(--pCor);
 }
 
 .btn, 
