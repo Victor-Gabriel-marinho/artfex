@@ -1,3 +1,14 @@
+:root {
+  --pCor: #072621;
+  --sCor: #2F4B3C;
+  --tCor: #F2E6D8;
+  --qCor: #F2994B;
+  --quiCor: #F2451D;
+  --sexCor: #1A1A1A;
+  --setCor: #FFFFFF;
+  --oCor: #EDEDED;
+}
+
 /* #login,
 #register {
   border: 1px solid #363636;
@@ -9,7 +20,7 @@
 
 #login h2,
 #register h2 {
-  color: #fff;
+  color: #000;
   text-align: center;
   font-size: 2.1em;
   margin-top: 0;
@@ -27,12 +38,13 @@
   margin-bottom: 1.5em;
   padding-bottom: 1.5em;
   border-bottom: 1px solid #363636;
+  width: 80%;
 }
 
 #login p,
 #register p {
   text-align: center;
-  color: #fff;
+  color: #000;
 }
 
 #login p a,
@@ -50,7 +62,6 @@
 }
 
 .register--left {
-  width:40vw;
   height: 100vh;
   flex: 1;
   display: flex;
@@ -59,18 +70,41 @@
   background-color: red;
 }
 
+.register--left h1, p {
+  color: #FFF;
+  font-weight: bold;
+}
+
+.register--left {
+  background-image: url(./images/tela_registro.png);
+  background-size: cover;
+  background-position: center;
+}
+
 .register--rigth {
-  width: 50vw;
-  height: 50vh;
   flex: 1;
 }
 
 .register--card {
-  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: aqua;
   padding: 40px;
+  height: 100vh;
+  align-items: center;
+}
+
+.background--form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--oCor);
+  padding: 40px;
+  height: 70vh;
+  padding: 0px 5px 0px 5px;
+  width: 60%;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px var(--sCor);
 }
 
