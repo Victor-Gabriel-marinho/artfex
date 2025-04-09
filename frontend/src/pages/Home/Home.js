@@ -3,18 +3,27 @@ import "./Home.css";
 const Home = () => {
   return (
     <div>
-        <header>
-            <nav>
-                <ul>
-                  <li><a href="/">Home</a></li>
-                  <li>Menu</li>
-                </ul>
-                <ul>
-                  <li><a href="/">Parceiros</a></li>
-                  <li>Mais</li>
-                </ul>
-            </nav>
-        </header>
+      <header>
+        <h1>ArtFex</h1>
+        <nav>
+          <input type="text" name="pesquisa" id="" placeholder="Buscar itens"></input>
+          <ul className="central">
+            <li >
+              Sobre nós
+            </li>
+            <li className="home">
+              Home
+            </li>
+            <li>
+              Catálogo
+            </li>
+          </ul>
+          <ul className="direita">
+            <li className="login">Login</li>
+            <li className="criar-conta">Criar conta</li>
+          </ul>
+        </nav>
+      </header>
     </div>
   )
 }
