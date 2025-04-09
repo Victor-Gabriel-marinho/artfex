@@ -1,8 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-
 // Rota para buscar dados da tabela "usuarios"
-export const pegar_dados = async (req, res) => {
+export const pegar_dados = async (_, res) => {
     const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
     try {
