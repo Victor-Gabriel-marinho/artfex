@@ -1,4 +1,5 @@
-import "./Home.css";
+import styles from "../Home/Home.module.css"
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -6,21 +7,21 @@ const Home = () => {
       <header>
         <h1>ArtFex</h1>
         <nav>
-          <input type="text" name="pesquisa" id="" placeholder="Buscar itens"></input>
-          <ul className="central">
+          <input className={styles['buscar-itens']} type="text" name="pesquisa" id="" placeholder="Buscar itens"></input>
+          <ul className= {styles.central}>
             <li >
               Sobre nós
             </li>
-            <li className="home">
+            <li className= {styles.home}>
               Home
             </li>
             <li>
               Catálogo
             </li>
           </ul>
-          <ul className="direita">
-            <li className="login">Login</li>
-            <li className="criar-conta">Criar conta</li>
+          <ul className= {styles.direita}>
+            <li className={styles.login} > <Link to="/login"> Login </Link></li>
+            <li className={styles['criar-conta']}> <Link to="/register">Criar conta</Link> </li>
           </ul>
         </nav>
       </header>

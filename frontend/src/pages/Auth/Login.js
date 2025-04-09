@@ -1,4 +1,6 @@
-import "./Auth.css";
+import "../Auth/Auth.module.css";
+
+import { Link } from "react-router-dom"
 
 const Login = () => {
 
@@ -7,7 +9,7 @@ const Login = () => {
   };
 
   return (
-    <div id="login">
+    <div className={"login"}>
       <div className="container">
         <section className="login--left">
           <h1>
@@ -32,6 +34,10 @@ const Login = () => {
                 />
                 <input type="submit" value="Entrar" />
               </form>
+
+              <p>
+                Não tem uma conta? <Link to="/register">Clique aqui</Link>
+              </p>
             </div>
           </div>
         </section>

@@ -1,4 +1,4 @@
-import "./Auth.css";
+import styles from "../Auth/Auth.module.css";
 
 //Components
 import { Link } from "react-router-dom";
@@ -32,19 +32,19 @@ const Register = () => {
   };
 
   return (
-    <div id="register">
-      <div className="container">
+    <div className={styles.register}>
+      <div className={styles.container}>
 
-        <section className="register--left">
-          <h1><span className="name--project">Artfex</span> <br />
+        <section className={styles.registerLeft}>
+          <h1><span className={styles.nameProject}>Art<span>fex</span></span> <br />
           o melhor para sua arte</h1>
         </section>
 
-        <section className="register--rigth">
-          <div className="register--card">
-            <div className="background--form">
+        <section className={styles.registerRight}>
+          <div className={styles.registerCard}>
+            <div className={styles.backgroundForm}>
               <h2>Artfex</h2>
-              <p className="subtitle">Cadastre-se</p>
+              <p className={styles.subtitle}>Cadastre-se</p>
               <form onSubmit={handleSubmit}>
                 <input
                   type="text"
