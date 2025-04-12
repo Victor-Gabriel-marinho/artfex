@@ -1,11 +1,10 @@
-import styles from "../Home/Home.module.css"
 import { Link } from "react-router-dom";
-
+import styles from "../tailwind/output.css"
 const Home = () => {
   return (
     <div>
       <header>
-        <h1>ArtFex</h1>
+        <h1 className="bg-black">ArtFex</h1>
         <nav>
           <input className={styles['buscar-itens']} type="text" name="pesquisa" id="" placeholder="Buscar itens"></input>
           <ul className= {styles.central}>
