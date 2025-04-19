@@ -3,26 +3,29 @@ import styles from "../tailwind/output.css"
 const Home = () => {
   return (
     <div>
-      <header>
-        <h1 className="bg-black">ArtFex</h1>
-        <nav>
-          <input className={styles['buscar-itens']} type="text" name="pesquisa" id="" placeholder="Buscar itens"></input>
-          <ul className= {styles.central}>
-            <li >
+      <header className="bg-[url('./images/fundo-header.png')] bg-center h-130 pt-5 font-poppins relative rounded-b-lg">
+        <nav className="bg-[#082621] flex items-center text-white rounded-[20px] p-[6px] border-1 " >
+          <ul className="flex justify-between items-center w-55 m-auto ml-125">
+            <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
               Sobre nós
             </li>
-            <li className= {styles.home}>
+            <li className="underline decoration-2 underline-offset-[3px]">
               Home
             </li>
-            <li>
+            <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
               Catálogo
             </li>
           </ul>
-          <ul className= {styles.direita}>
-            <li className={styles.login} > <Link to="/login"> Login </Link></li>
-            <li className={styles['criar-conta']}> <Link to="/register">Criar conta</Link> </li>
+          <ul className="w-[230px] flex justify-around items-center">
+            <a href="#" className="text-black bg-[url('./images/carrinho-de-compras.png')]"></a>
+            <li className="w-[65px] text-center border-2 bg-none text-white pr-[8px] pl-[8px] rounded-xl" > <Link to="/login"> Login </Link></li>
+            <li className="p-[3px] w-[120px] text-center rounded-[20px] bg-[#F2994B] font-bold"> <Link to="/register">Criar conta</Link> </li>
           </ul>
         </nav>
+        <section className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-normal">
+          <h1 className="text-9xl font-poppins text-center">ArtFex</h1>
+          <p className="text-2xl text-center w-3/4 m-auto">Autenticidade feita à mão — descubra o melhor do artesanato cearense."</p>
+        </section>
       </header>
     </div>
   )
