@@ -3,9 +3,9 @@ import styles from "../tailwind/output.css"
 const Home = () => {
   return (
     <div>
-      <header className="bg-[url('./images/fundo-header.png')] bg-center h-130 pt-5 font-poppins relative rounded-b-lg">
-        <nav className="bg-[#082621] flex items-center text-white rounded-[20px] p-[6px] border-1 " >
-          <ul className="flex justify-between items-center w-55 m-auto ml-125">
+      <header className="bg-[url('./images/fundo-header.png')] bg-right h-130 pt-5 font-poppins relative">
+        <nav className="bg-[#082621] m-auto w-[90%] flex items-center text-white rounded-[20px] p-[6px] border-1 " >
+          <ul className="flex justify-between items-center w-55 m-auto ml-110">
             <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
               Sobre nós
             </li>
@@ -27,6 +27,13 @@ const Home = () => {
           <p className="text-2xl text-center w-3/4 m-auto">Autenticidade feita à mão — descubra o melhor do artesanato cearense."</p>
         </section>
       </header>
+      <section className="bg-[#082621] p-5  ">
+        <ul className="flex justify-evenly center text-white">
+          <li className="relative"><div className="bg-[url(./images/feito-a-mão.png)] bg-cover w-[34px] h-[32px] absolute -left-10 -top-1"></div>Feito à mão</li>
+          <li className="relative"><div className="bg-[url(./images/artesãos_locais_bold.png)] bg-cover w-[65px] h-[65px] absolute -left-13 -top-5"></div>Artesãos locais</li>
+          <li className="relative"><div className="bg-[url(./images/produtos_exclusivos_bold.png)] bg-cover w-[45px] h-[45px] absolute -left-10 -top-2"></div>Produtos exclusivos</li>
+        </ul>
+      </section>
     </div>
   )
 }
