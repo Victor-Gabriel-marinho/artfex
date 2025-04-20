@@ -19,10 +19,17 @@ export const pegar_dados = async (_, res) => {
 
 export const criar_usuario = async (req, res) => {
   const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-  const { nome, email, senha, cidade, estado } = req.body;
+  const user = {
+    "nome": req.body.name,
+    "email": req.body.email,
+    "senha": req.body.password,
+    "cidade": req.body.cidade,
+    "estado": req.body.estado
+  }
 
   try {
-    const { data, error } = await supabase.from("usuarios").insert([{ nome, email, senha, cidade, estado }]);
+    const { data, error } = await supabase.from("usuarios").insert(user);
+    console.log("Usuario cadastrado")
     if (error) throw error;
     res.json(data);
   } catch (error) {
@@ -32,12 +39,15 @@ export const criar_usuario = async (req, res) => {
 
 // Rota para deletar um usuário
 
-export const deletar_usuaria = async(req, res) => {
+export const deletar_usuario = async(req, res) => {
   const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-  const { nome, email, senha, cidade, estado } = req.body;
+  const id = req.body.id
 
+  
   try{
+    console.log("Tentando deletar id: ", id)
     const {data, error} = await supabase.from("usuarios").delete().eq("id", id)
+    console.log("Usuario deletado")
     if (error) throw error
     res.json(data)
   } catch (error){

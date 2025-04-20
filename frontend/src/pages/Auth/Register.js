@@ -1,4 +1,5 @@
 import styles from "../Auth/Auth.module.css";
+import axios from "axios"
 
 //Components
 import { Link } from "react-router-dom";
@@ -10,6 +11,8 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [estado, setEstado] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -20,6 +23,8 @@ const Register = () => {
       name,
       email,
       password,
+      cidade,
+      estado,
       confirmPassword,
     };
 
@@ -27,7 +32,16 @@ const Register = () => {
       setError("As senhas precisam ser iguais");
       return;
     }
+    // envia os dados do front pro backend 
+    try {
+      const response = axios.post("http://127.0.0.1:5000/user/criar", user);
+      console.log("Usuário cadastrado com sucesso:", response.data);
+    } catch (error) {
+      console.error("Erro ao cadastrar usuário:", error.response?.data || error.message);
+      setError("Erro ao cadastrar. Verifique os dados.");
+    }
 
+    
     console.log(user);
   };
 
@@ -57,6 +71,18 @@ const Register = () => {
                   placeholder="E-mail"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email || ""}
+                />
+                <input
+                  type="cidade"
+                  placeholder="Cidade"
+                  onChange={(e) => setCidade(e.target.value)}
+                  value={cidade || ""}
+                />
+                <input
+                  type="estado"
+                  placeholder="estado"
+                  onChange={(e) => setEstado(e.target.value)}
+                  value={estado || ""}
                 />
                 <input
                   type="password"
