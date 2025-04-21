@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
-    margin: 0;
+    margin: 0px;
     padding: 0px;
 }
 :root{
@@ -17,7 +17,6 @@
     /*declaração de fontes*/
     --fonte-1:"Poppins";
     --fonte-2:"MuseoModerno";
-    
 }
 header {
     background-image: url(images/fundo-header.png);

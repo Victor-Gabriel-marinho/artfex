@@ -14,7 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+     "run": "npx tailwidcss -i ./pages/tailwind/input.css -o ./pages/tailwind/output.css --watch"
   },
   "eslintConfig": {
     "extends": [
@@ -33,5 +34,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+    "tailwindCSS.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+},"editor.quickSuggestions": {
+    "strings": true
+}
 }
