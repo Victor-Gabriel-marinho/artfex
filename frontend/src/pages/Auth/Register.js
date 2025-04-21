@@ -50,7 +50,7 @@ const Register = () => {
       <div className={styles.container}>
 
         <section className={styles.registerLeft}>
-          <h1><span className={styles.nameProject}>Art<span>fex</span></span> <br />
+          <h1><span className="text-9xl text-[#f2994b] font-[MuseoModerno]">Art<span>fex</span></span> <br />
           o melhor para sua arte</h1>
         </section>
 

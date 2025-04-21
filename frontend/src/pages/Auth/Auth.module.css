@@ -11,7 +11,7 @@
   --oCor: #ededed;
 }
 
-#login h2,
+.login h2,
 .register h2 {
   font-family: "MuseoModerno", sans-serif;
   color: var(--pCor);
@@ -28,7 +28,7 @@
   margin-top: 0.2em;
 }
 
-#login form,
+.login form,
 .register form {
   margin-bottom: 1.5em;
   padding-bottom: 1.5em;
@@ -36,13 +36,13 @@
   width: 80%;
 }
 
-#login p,
+.login p,
 .register p {
   text-align: center;
   color: #000;
 }
 
-#login p a,
+.login p a,
 .register p a {
   font-weight: bold;
   color: var(--pCor);
