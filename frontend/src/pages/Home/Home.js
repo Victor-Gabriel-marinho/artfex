@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "../tailwind/output.css"
+
 const Home = () => {
   return (
     <div>

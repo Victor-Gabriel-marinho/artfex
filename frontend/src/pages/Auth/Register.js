@@ -1,4 +1,5 @@
-import styles from "../Auth/Auth.module.css";
+// import styles from "../Auth/Auth.module.css";
+import styles from "../tailwind/output.css"
 import axios from "axios"
 
 //Components
@@ -46,19 +47,19 @@ const Register = () => {
   };
 
   return (
-    <div className={styles.register}>
-      <div className={styles.container}>
+    <div className="font-[MuseoModerno]">
+      <div className="">
 
-        <section className={styles.registerLeft}>
+        <section className="">
           <h1><span className="text-9xl text-[#f2994b] font-[MuseoModerno]">Art<span>fex</span></span> <br />
           o melhor para sua arte</h1>
         </section>
 
-        <section className={styles.registerRight}>
-          <div className={styles.registerCard}>
-            <div className={styles.backgroundForm}>
-              <h2>Artfex</h2>
-              <p className={styles.subtitle}>Cadastre-se</p>
+        <section className="">
+          <div className="">
+            <div className="">
+              <h2 className="bg-blue-500">Artfex</h2>
+              <p className="">Cadastre-se</p>
               <form onSubmit={handleSubmit}>
                 <input
                   type="text"
