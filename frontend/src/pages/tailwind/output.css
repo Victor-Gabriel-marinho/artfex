@@ -7,6 +7,9 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-blue-500: oklch(62.3% 0.214 259.815);
+    --color-blue-900: oklch(37.9% 0.146 265.522);
+    --color-zinc-900: oklch(21% 0.006 285.885);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -16,7 +19,6 @@
     --text-9xl--line-height: 1;
     --font-weight-normal: 400;
     --font-weight-bold: 700;
-    --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -176,32 +178,20 @@
   .relative {
     position: relative;
   }
-  .-top-0 {
-    top: calc(var(--spacing) * -0);
-  }
   .-top-1 {
     top: calc(var(--spacing) * -1);
   }
   .-top-2 {
     top: calc(var(--spacing) * -2);
   }
-  .-top-3 {
-    top: calc(var(--spacing) * -3);
-  }
   .-top-5 {
     top: calc(var(--spacing) * -5);
-  }
-  .top-0 {
-    top: calc(var(--spacing) * 0);
   }
   .top-1 {
     top: calc(var(--spacing) * 1);
   }
   .top-1\/2 {
     top: calc(1/2 * 100%);
-  }
-  .top-2 {
-    top: calc(var(--spacing) * 2);
   }
   .-left-10 {
     left: calc(var(--spacing) * -10);
@@ -239,9 +229,6 @@
   .ml-110 {
     margin-left: calc(var(--spacing) * 110);
   }
-  .ml-125 {
-    margin-left: calc(var(--spacing) * 125);
-  }
   .flex {
     display: flex;
   }
@@ -262,9 +249,6 @@
   }
   .h-\[65px\] {
     height: 65px;
-  }
-  .h-\[3245\] {
-    height: 3245;
   }
   .w-3 {
     width: calc(var(--spacing) * 3);
@@ -318,6 +302,9 @@
   .resize {
     resize: both;
   }
+  .content-center {
+    align-content: center;
+  }
   .items-center {
     align-items: center;
   }
@@ -353,6 +340,15 @@
   }
   .bg-\[\#F2994B\] {
     background-color: #F2994B;
+  }
+  .bg-blue-500 {
+    background-color: var(--color-blue-500);
+  }
+  .bg-blue-900 {
+    background-color: var(--color-blue-900);
+  }
+  .bg-zinc-900 {
+    background-color: var(--color-zinc-900);
   }
   .bg-\[url\(\'\.\/images\/carrinho-de-compras\.png\'\)\] {
     background-image: url('./images/carrinho-de-compras.png');
@@ -399,6 +395,9 @@
   .text-center {
     text-align: center;
   }
+  .font-\[MuseoModerno\] {
+    font-family: MuseoModerno;
+  }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
@@ -414,6 +413,9 @@
   .font-normal {
     --tw-font-weight: var(--font-weight-normal);
     font-weight: var(--font-weight-normal);
+  }
+  .text-\[\#f2994b\] {
+    color: #f2994b;
   }
   .text-black {
     color: var(--color-black);
