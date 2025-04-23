@@ -35,7 +35,7 @@ const Home = () => {
           <li className="relative"><div className="bg-[url(./images/produtos_exclusivos_bold.png)] bg-cover w-[45px] h-[45px] absolute -left-10 -top-2"></div>Produtos exclusivos</li>
         </ul>
       </section>
-    </div>
+    </div>  
   )
 }
 

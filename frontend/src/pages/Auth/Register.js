@@ -1,12 +1,12 @@
 // import styles from "../Auth/Auth.module.css";
-import styles from "../tailwind/output.css"
 import axios from "axios"
+import styles from "../tailwind/output.css"
 
 //Components
 import { Link } from "react-router-dom";
 
 //Hooks
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -47,8 +47,8 @@ const Register = () => {
   };
 
   return (
-    <div className="font-[MuseoModerno]">
-      <div className="">
+    <div className="font-[MuseoModerno] ">
+      <div className="flex content-center items-center">
 
         <section className="">
           <h1><span className="text-9xl text-[#f2994b] font-[MuseoModerno]">Art<span>fex</span></span> <br />
@@ -58,7 +58,7 @@ const Register = () => {
         <section className="">
           <div className="">
             <div className="">
-              <h2 className="bg-blue-500">Artfex</h2>
+              <h2 className="bg-zinc-900">Artfex</h2>
               <p className="">Cadastre-se</p>
               <form onSubmit={handleSubmit}>
                 <input
