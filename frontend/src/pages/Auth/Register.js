@@ -36,7 +36,7 @@ const Register = () => {
     // envia os dados do front pro backend 
     try {
       const response = axios.post("http://127.0.0.1:5000/user/criar", user);
-      console.log("Usuário cadastrado com sucesso:", response.data);
+      alert("Usuário cadastrado com sucesso:", response.data);
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error.response?.data || error.message);
       setError("Erro ao cadastrar. Verifique os dados.");
