@@ -5,7 +5,6 @@ import Register from "./pages/Auth/Register";
 //Router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
 // Pages
 function App() {
   return (
