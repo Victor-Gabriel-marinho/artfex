@@ -35,6 +35,13 @@ const Home = () => {
           <li className="relative"><div className="bg-[url(./images/produtos_exclusivos_bold.png)] bg-cover w-[45px] h-[45px] absolute -left-10 -top-2"></div>Produtos exclusivos</li>
         </ul>
       </section>
+      <section className="p-20 flex justify-evenly items-top m-auto">
+            <div className="bg-[url('./images/artesãos.png')] bg-cover h-[400px] w-[400px] rounded-[40px]"></div>
+            <div className="flex flex-wrap w-[500px] h-[100px] justify-between items-center mt-[40px]"> 
+              <h1 className=" text-4xl text-[#2F4B3C]">Seja um Artesão parceiro</h1>
+              <p className="text-2xl text-[#606060]">Valorize seu talento e aumente suas vendas — seja um artesão parceiro da nossa loja de artesanato cearense!</p>
+            </div>
+        </section>
     </div>  
   )
 }
