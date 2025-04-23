@@ -95,7 +95,7 @@ const Register = () => {
                 <input
                   className="mb-[1.5em] border-b border-[#363636] pt-[0em] pr-[1em] pb-[1em] pl-[0em] outline-none"
                   type="estado"
-                  placeholder="estado"
+                  placeholder="Estado"
                   onChange={(e) => setEstado(e.target.value)}
                   value={estado || ""}
                 />
@@ -121,7 +121,7 @@ const Register = () => {
                 {error && <p className="error">{error}</p>}
               </form>
               <p>
-                Já tem uma conta? <Link to="/login">Clique aqui</Link>
+                Já tem uma conta? <Link to="/login"><span className="text-[#F2994B] font-bold opacity-70 hover:opacity-100 transition-opacity">Clique aqui</span></Link>
               </p>
             </div>
           </div>

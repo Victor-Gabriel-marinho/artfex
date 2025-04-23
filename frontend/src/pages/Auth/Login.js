@@ -49,7 +49,7 @@ const Login = () => {
                   placeholder="Senha"
                   onChange={(e) => setPassword(e.target.value)}
                   value={password || ""}
-                /> outline-none
+                />
                 <input
                   className="opacity-90 bg-[#F2994B] hover:opacity-100 cursor-pointer transition-opacity p-[1em] pl-2 pr-2 text-white font-bold rounded-md"
                   type="submit"
@@ -58,7 +58,7 @@ const Login = () => {
                 {error && <p className="error">{error}</p>}
               </form>
               <p>
-                Já tem uma conta? <Link to="/login">Clique aqui</Link>
+                Não tem uma conta? <Link to="/register"><span className="text-[#F2994B] font-bold opacity-70 hover:opacity-100 transition-opacity">Clique aqui</span></Link>
               </p>
             </div>
           </div>
