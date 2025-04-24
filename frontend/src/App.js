@@ -10,6 +10,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Pages
 function App() {
   return (
+    // <div className="min-h-screen bg-gray-100">
+    //   <MainSection />
+    // </div>
     <div className="App">
       <BrowserRouter>
         <Routes>
