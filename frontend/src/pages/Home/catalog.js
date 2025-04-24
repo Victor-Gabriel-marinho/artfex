@@ -6,6 +6,13 @@ import styles from "../tailwind/output.css";
 import NavBar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
+// const get_prod = (_,res) => {
+//   try{
+//     const response = axios.get('http://127.0.0.1:5000/produtos/produtos');
+
+    
+//   }
+// }
 //Hooks
 
 const Catalog = () => {
