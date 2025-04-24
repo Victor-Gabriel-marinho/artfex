@@ -1,6 +1,6 @@
-import "../Auth/Auth.module.css";
-
 import { Link } from "react-router-dom";
+import styles from "../tailwind/output.css";
+
 
 import { useState } from "react";
 

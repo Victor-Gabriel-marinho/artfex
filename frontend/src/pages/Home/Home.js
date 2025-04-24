@@ -1,24 +1,22 @@
 import { Link } from "react-router-dom";
 import styles from "../tailwind/output.css";
 
-//Componentes
-import { NavBar } from "../../components/Navbar";
-
 const Home = () => {
   return (
     <div>
-      <NavBar />
       <header className="bg-[url('./images/fundo-header.png')] bg-right h-130 pt-5 font-poppins relative">
         <nav className="bg-[#082621] m-auto w-[90%] flex items-center text-white rounded-[20px] p-[6px] border-1 ">
           <ul className="flex justify-between items-center w-55 m-auto ml-110">
-            <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-              Sobre nós
+            <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer">
+              {" "}
+              <Link to="/about"> Sobre nós </Link>
             </li>
-            <li className="underline decoration-2 underline-offset-[3px]">
+            <li className="underline decoration-[#F2994B] underline-offset-[3px]">
               Home
             </li>
-            <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-              Catálogo
+            <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer">
+              {" "}
+              <Link to="/catalog"> Catálogo </Link>
             </li>
           </ul>
           <ul className="w-[230px] flex justify-around items-center">

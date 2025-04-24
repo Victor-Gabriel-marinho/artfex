@@ -1,30 +1,50 @@
 //Componentes
-import {NavLink, Link} from 'react-router-dom'
+import { NavLink, Link } from "react-router-dom";
 
 const NavBar = () => {
+  const linkBase =
+    "group relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:transition-all after:duration-300";
+
   return (
-    <nav className="bg-[#082621] m-auto w-[90%] flex items-center text-white rounded-[20px] p-[6px] border-1 ">
-      <ul className="flex justify-between items-center w-55 m-auto ml-110">
+    <nav className="bg-[#082621] m-auto w-[90%] flex justify-center text-white rounded-[20px] p-[8px] border mt-[1.5em]">
+      <ul className="flex gap-10 items-center">
+        <li>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `${linkBase} after:w-0 hover:after:w-full ${
+                isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
+              }`
+            }
+          >
+            Sobre nós
+          </NavLink>
+        </li>
+
         <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Sobre nós
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `${linkBase} after:w-0 hover:after:w-full ${
+                isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
+              }`
+            }
+          >
+            Home
+          </NavLink>
         </li>
-        <li className="underline decoration-2 underline-offset-[3px]">Home</li>
-        <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Catálogo
-        </li>
-      </ul>
-      <ul className="w-[230px] flex justify-around items-center">
-        <a
-          href="#"
-          className="text-black bg-[url('./images/carrinho-de-compras.png')]"
-        ></a>
-        <li className="w-[65px] text-center border-2 bg-none text-white pr-[8px] pl-[8px] rounded-xl">
-          {" "}
-          <Link to="/login"> Login </Link>
-        </li>
-        <li className="p-[3px] w-[120px] text-center rounded-[20px] bg-[#F2994B] font-bold">
-          {" "}
-          <Link to="/register">Criar conta</Link>{" "}
+
+        <li>
+          <NavLink
+            to="/catalog"
+            className={({ isActive }) =>
+              `${linkBase} after:w-0 hover:after:w-full ${
+                isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
+              }`
+            }
+          >
+            Catálogo
+          </NavLink>
         </li>
       </ul>
     </nav>
