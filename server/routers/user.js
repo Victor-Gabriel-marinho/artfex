@@ -5,8 +5,8 @@ import { criar_usuario, deletar_usuario, pegar_dados } from "../controllers/user
 
 const router = express.Router()
 
-router.get("/dados", pegar_dados)
-router.get("/pegar")
+
+router.get("/pegar", pegar_dados)
 router.post("/criar", criar_usuario)
 router.delete("/deletar", deletar_usuario)
 
