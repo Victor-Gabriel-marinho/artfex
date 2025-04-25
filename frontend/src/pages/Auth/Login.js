@@ -3,12 +3,12 @@ import styles from "../tailwind/output.css";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
-);
+// const supabase = createClient(
+//   process.env.SUPABASE_URL,
+//   process.env.SUPABASE_KEY
+// );
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,17 +18,17 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const {data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    })
+    // const {data, error } = await supabase.auth.signInWithPassword({
+    //   email,
+    //   password
+    // })
 
-    if(error){
-      alert("login falhou: "+ error.message);
-    } else{
-      localStorage.setItem("token", data.session.access_token);
-      navigate('/')
-    }
+    // if(error){
+    //   alert("login falhou: "+ error.message);
+    // } else{
+    //   localStorage.setItem("token", data.session.access_token);
+    //   navigate('/')
+    // }
   };
 
   return (
