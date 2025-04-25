@@ -54,3 +54,33 @@ export const deletar_usuario = async(req, res) => {
     res.status(500).json({ error : error.message})
   }
 }
+
+export const login_user = async (req, res) => {
+  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+  const { email, password } = req.body;
+  try {
+    // 1. Buscar usuário pelo e-mail
+    const { data, error } = await supabase
+      .from('usuarios')
+      .select('*')
+      .eq('email', email)
+    if (error || !data) {
+      return res.status(401).json({ error: 'Usuário não encontrado' });
+    }
+    if (data.senha !== password) {
+      return res.status(401).json({ error: 'Senha incorreta' });
+    }
+    return res.status(200).json({
+      message: 'Login realizado com sucesso',
+      usuario: {
+        id: data.id,
+        email: data.email,
+        nome: data.nome,
+      }
+    });
+
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+
