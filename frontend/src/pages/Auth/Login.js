@@ -3,16 +3,15 @@ import styles from "../tailwind/output.css";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-<<<<<<< HEAD
-// import { createClient } from "@supabase/supabase-js";
 
+// import { createClient } from "@supabase/supabase-js";
 // const supabase = createClient(
 //   process.env.SUPABASE_URL,
 //   process.env.SUPABASE_KEY
 // );
-=======
 
->>>>>>> 40f138cb902111ce1f11acda5a549892b8a3847f
+
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -22,19 +21,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-<<<<<<< HEAD
-    // const {data, error } = await supabase.auth.signInWithPassword({
-    //   email,
-    //   password
-    // })
 
-    // if(error){
-    //   alert("login falhou: "+ error.message);
-    // } else{
-    //   localStorage.setItem("token", data.session.access_token);
-    //   navigate('/')
-    // }
-=======
+
     try{
       const response = await axios.get("http://127.0.0.1:5000/user/login",{
         email, password
@@ -46,7 +34,7 @@ const Login = () => {
       console.error(error.response)
       setError(error.response)
     }
->>>>>>> 40f138cb902111ce1f11acda5a549892b8a3847f
+
   };
 
   return (
