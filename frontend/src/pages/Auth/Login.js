@@ -5,9 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Login = async () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
 // import { createClient } from "@supabase/supabase-js";
 // const supabase = createClient(
@@ -25,8 +22,6 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-
 
     try{
       const response = await axios.get("http://127.0.0.1:5000/user/login",{
