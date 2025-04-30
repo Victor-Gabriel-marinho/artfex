@@ -9,6 +9,25 @@ const Login = async () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+// import { createClient } from "@supabase/supabase-js";
+// const supabase = createClient(
+//   process.env.SUPABASE_URL,
+//   process.env.SUPABASE_KEY
+// );
+
+
+
+
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+
+
     try{
       const response = await axios.get("http://127.0.0.1:5000/user/login",{
         email, password
@@ -23,6 +42,7 @@ const Login = async () => {
 
 
 
+  };
 
   return (
     <div className="min-h-screen flex justify-center items-center">
@@ -45,8 +65,7 @@ const Login = async () => {
               <h2 className="font-bold text-[#0b3c34] text-4xl mb-[1.2em]">Entrar</h2>
               <form
                 className="flex flex-col justify-center mb-[1.5em] pb-[1.5em] border-b border-[#363636] w-[80%]"
-                
-              >
+                >
                 <input
                   className="mb-[1.5em] border-b border-[#363636] pt-[0em] pr-[1em] pb-[1em] pl-[0em] outline-none"
                   type="email"
@@ -77,6 +96,7 @@ const Login = async () => {
       </div>
     </div>
   );
+}
 }
 
 export default Login;
