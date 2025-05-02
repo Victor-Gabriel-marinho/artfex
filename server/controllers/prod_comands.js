@@ -13,28 +13,16 @@ export const get_produtos = async (_,res) => {
     res.json(data)
 }
 
-const get_usu_prods = async (_,res, next) => {
+
+export const get_usu = async (req,res)=> {
     const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+    const id = req.query.id
 
-    const {data: id,error} = await supabase.from('produtos').select('id_usuario')
-
-    if (error){
-        return res.status(500).json({error: error.mensage})
-    }
-
-    res.locals.id = id
-    next();
-}
-
-export const get_usu = async (_,res)=> {
-    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-
-    const {data,erro} = await supabase.from('usuarios').select('*').eq('id', res.locals.id)
+    const {data,erro} = await supabase.from('usuarios').select('*').eq('id', id).single()
     
     if (erro){
         return res.status(500).json({error: erro.message})
     }
 
-    res.json(data)
+    res.json(data || [])
 }
-

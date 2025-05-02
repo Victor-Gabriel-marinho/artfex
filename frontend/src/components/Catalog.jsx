@@ -6,6 +6,7 @@ import axios from "axios"
 export default function CatalogComponent() {
 
     const [produtos, setprodutos] = useState([])
+    const [usus, setusus] = useState([])
     const [modalprod, setmodalprod] = useState([])
     const [openModal, setOpenModal] = useState(false)
 
@@ -26,12 +27,27 @@ export default function CatalogComponent() {
         }).catch(Error => {
           console.log("erro ao fazer requisição")
         })
+
       }, [])
 
       const getModal = (produto) => {
         setOpenModal(true);
-        setmodalprod(produto) 
-        console.log(modalprod)
+        setmodalprod(produto)
+
+        const id = produto.id_usuario
+
+        axios
+        .get("http://127.0.0.1:5000/produtos/usu_prods", {
+          params: {
+            id: id
+          }
+        })
+        .then(Response => {
+          setusus(Response.data)
+          console.log(usus)
+        }).catch(Error => {
+          console.log("erroa ao fazer requisição", Error)
+        })
       }
 
       const handleCloseModal = () => {
@@ -57,6 +73,7 @@ export default function CatalogComponent() {
           {produtos.map((produto) => (
             <div onClick={() => getModal(produto)} key={produto.id} className="w-[300px] h-[350px]">
               <img
+                alt=""
                 src={produto.url}
                 className=" w-full h-full max-h-[300px] bg-cover rounded-xl"
               />
@@ -75,7 +92,10 @@ export default function CatalogComponent() {
             <div className="flex justify-center items-center">
               {/* imagem */}
               <div >
-                <img className="w-[270px] h-[290px] bg-cover rounded-xl mr-[2em]" src={modalprod.url}/>
+                <img 
+                className="w-[270px] h-[290px] bg-cover rounded-xl mr-[2em]"
+                alt="" 
+                src={modalprod.url}/>
               </div>
 
               {/* descrição da imagem */}
@@ -85,7 +105,7 @@ export default function CatalogComponent() {
                 <span className="text-[#F2994B] text-xl font-bold font-[Poppins] font-normal">R${modalprod.preco},00</span> 
                 <div className="flex">
                   <div className="bg-gray-300 w-[30px] h-[30px] rounded-full"></div>
-                  <p className="font-[Poppins] pl-2 font-normal">Name</p>
+                  <p className="font-[Poppins] pl-2 font-normal">{usus.nome}</p>
                 </div>
                 <p className="text-gray-500 font">{modalprod.descricao}</p>
 
