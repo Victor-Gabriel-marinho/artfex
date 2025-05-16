@@ -4,12 +4,12 @@ import Footer from "../../components/Footer";
 const Home = () => {
   return (
     <div>
-      <header className="bg-[url('./images/fundo-header.png')] bg-fixed bg-bottom h-130 pt-5 font-poppins relative">
+      <header className="bg-[url('./images/fundo-header.png')] bg-fixed bg-no-repeat bg-bottom h-130 pt-5 font-poppins relative">
         <nav className="bg-[#082621] m-auto w-[90%] flex items-center text-white rounded-[20px] p-[6px] border-1 ">
           <ul className="flex justify-between items-center w-55 m-auto ml-110">
             <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer">
               {" "}
-              <Link to="/about"> Sobre nós </Link>
+              <Link to="/about">  </Link>
             </li>
             <li className="underline decoration-[#F2994B] underline-offset-[3px]">
               Home

@@ -12,12 +12,10 @@ const NavBar = () => {
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              `${linkBase} after:w-0 hover:after:w-full ${
-                isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
+              `${linkBase} after:w-0 hover:after:w-full ${isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
               }`
             }
           >
-            Sobre nós
           </NavLink>
         </li>
 
@@ -25,8 +23,7 @@ const NavBar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `${linkBase} after:w-0 hover:after:w-full ${
-                isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
+              `${linkBase} after:w-0 hover:after:w-full ${isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
               }`
             }
           >
@@ -38,8 +35,7 @@ const NavBar = () => {
           <NavLink
             to="/catalog"
             className={({ isActive }) =>
-              `${linkBase} after:w-0 hover:after:w-full ${
-                isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
+              `${linkBase} after:w-0 hover:after:w-full ${isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
               }`
             }
           >
