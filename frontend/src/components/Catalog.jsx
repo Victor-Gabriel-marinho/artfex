@@ -6,6 +6,7 @@ import axios from "axios"
 export default function CatalogComponent() {
 
     const [produtos, setprodutos] = useState([])
+    const [modalproduto, setModalProduto] = useState([])
     const [openModal, setOpenModal] = useState(false)
 
     useEffect(() => {
@@ -28,8 +29,23 @@ export default function CatalogComponent() {
         })
       }, [])
 
-      const getId = () => {
+      const get_modal= (produto) => {
         setOpenModal(true);
+
+        setModalProduto(produto);
+        console.log(produto)  
+        
+        const id = produto.id_usuario
+
+        axios
+        .get('http://127.0.0.1:5000/produtos/get_user/', {params: {id}})  
+        .then((Response) => {
+          console.log(Response.data)
+        })
+        .catch((Error) => {
+          console.log("erro ao fazer requisição")
+        })
+
       }
 
       const handleCloseModal = () => {
@@ -52,20 +68,20 @@ export default function CatalogComponent() {
         <div
           className="flex flex-wrap gap-10 justify-center cursor-pointer"
         >
-          {produtos.map((produtos) => (
-            <div onClick={getId} key={produtos.id} className="w-[300px] h-[350px]">
+          {produtos.map((produto) => (
+            <div onClick={() => {get_modal(produto)}} key={produto.id} className="w-[300px] h-[350px]">
 
               <img
-                src={produtos.url}
+                src={produto.url}
                 className=" w-full h-full max-h-[300px] bg-cover rounded-xl"
               />
               <div className="flex justify-between pl-2 pr-2 pt-1">
                 <span className="text-gray-500 font">Categoria</span>
                 <span className="text-[#F2994B] font-bold font-[Poppins]">
-                  R$100,00
+                  R${produto.preco},00
                 </span>
               </div>
-              <p className="font-bold font-[Poppins] pl-2">{produtos.nome}</p>
+              <p className="font-bold font-[Poppins] pl-2">{produto.nome}</p>
             </div>
           ))}
         </div>
@@ -73,13 +89,13 @@ export default function CatalogComponent() {
         <Modal isOpen={openModal} setCloseModal={handleCloseModal}>
             <div className="flex justify-center items-center">
               {/* imagem */}
-              <div className="w-[270px] h-[290px] bg-[url('./images/artesãos.png')] bg-cover rounded-xl mr-[2em]"></div>
+              <img className="w-[270px] h-[290px] bg-cover rounded-xl mr-[2em]" src={modalproduto.url} alt="" />
 
               {/* descrição da imagem */}
               <div className="w-full max-w-[300px] flex flex-col gap-3"> 
                 <span className="text-gray-500 font">Categoria</span>
-                <p className="font-[Poppins] pl-2 font-medium text-2xl pl-[1px]">Name</p>
-                <span className="text-[#F2994B] text-xl font-bold font-[Poppins] font-normal">R$100,00</span> 
+                <p className="font-[Poppins] pl-2 font-medium text-2xl">{modalproduto.nome}</p>
+                <span className="text-[#F2994B] text-xl font-bold font-[Poppins] ">R${modalproduto.preco},00</span> 
                 <div className="flex">
                   <div className="bg-gray-300 w-[30px] h-[30px] rounded-full"></div>
                   <p className="font-[Poppins] pl-2 font-normal">Name</p>
