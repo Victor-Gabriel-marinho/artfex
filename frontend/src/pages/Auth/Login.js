@@ -1,8 +1,10 @@
-import { Link, Navigate } from "react-router-dom";
-import styles from "../tailwind/output.css";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import {useState} from "react"
+import '../../resposiveGlobal.css';
+//import images
+import Logo from '../../assets/images/logo.svg'
 
 
 const Login = () => {
@@ -27,10 +29,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <div className="flex justify-center items-center w-full">
+    <div className="min-h-screen flex justify-center items-center container">
+      <div className="flex justify-center items-center w-full wrapper-auth">
         {/* REGISTER LEFT */}
-        <section className="flex-1 bg-[url('./images/tela_registro.png')] bg-cover bg-center h-screen flex flex-col items-center justify-center">
+        <section className="flex-1 bg-[url('./images/tela_registro.png')] bg-cover bg-center h-screen flex flex-col items-center justify-center register-left">
           <h1 className="text-white mb-[6em] mr-[8em]">
             <span className="text-8xl font-bold font-[MuseoModerno] text-[#f2994b]">
               Art<span>fex</span>
@@ -42,9 +44,10 @@ const Login = () => {
 
         {/* REGISTER RIGHT */}
         <section className="flex-1">
-          <div className="">
-            <div className="flex justify-center items-center flex-col">
-              <h2 className="font-bold text-[#0b3c34] text-4xl mb-[1.2em]">Entrar</h2>
+          <div className="p-[5rem] register-form">
+            <div className="flex justify-center items-center flex-col box-input">
+              <img src={Logo} className="logo" />
+              <h2 className="font-bold text-[#0b3c34] text-4xl mb-[1.2em]">Faça seu login</h2>
               <form
                 className="flex flex-col justify-center mb-[1.5em] pb-[1.5em] border-b border-[#363636] w-[80%]"
                 onSubmit={handleSubmit}

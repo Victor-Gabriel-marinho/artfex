@@ -1,6 +1,6 @@
 // import styles from "../Auth/Auth.module.css";
 import axios from "axios";
-import styles from "../tailwind/output.css";
+import Logo from '../../assets/images/logo.svg'
 
 //Components
 import { Link } from "react-router-dom";
@@ -50,11 +50,11 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <div className="flex justify-center items-center w-full">
+    <div className="min-h-screen flex justify-center items-center container">
+      <div className="flex justify-center items-center w-full wrapper-auth">
         {/* REGISTER LEFT */}
-        <section className="flex-1 bg-[url('./images/tela_registro.png')] bg-cover bg-center h-screen flex flex-col items-center justify-center">
-          <h1 className="text-white mb-[6em] mr-[8em]">
+        <section className="flex-1 bg-[url('./images/tela_registro.png')] bg-cover bg-center h-screen flex flex-col items-center justify-center register-left">
+            <h1 className="text-white mb-[6em] mr-[8em]">
             <span className="text-8xl font-bold font-[MuseoModerno] text-[#f2994b]">
               Art<span>fex</span>
             </span>
@@ -65,8 +65,9 @@ const Register = () => {
 
         {/* REGISTER RIGHT */}
         <section className="flex-1">
-          <div className="">
-            <div className="flex justify-center items-center flex-col">
+          <div className="p-[5rem] register-form">
+            <div className="flex justify-center items-center flex-col box-input">
+              <img src={Logo} className="logo" />
               <h2 className="font-bold text-[#0b3c34] text-4xl mb-[1.5em]">Cadastre-se</h2>
               <form
                 className="flex flex-col justify-center mb-[1.5em] pb-[1.5em] border-b border-[#363636] w-[80%]"

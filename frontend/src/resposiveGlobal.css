@@ -1,0 +1,80 @@
+.logo {
+    display: none;
+}
+
+/* CELULAR - AUTH */
+@media (max-width: 600px) {
+
+    .wrapper-auth {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .register-left {
+        display: none;
+    }
+
+    .box-input {
+        padding: 7rem !important;
+        width: 600px !important;
+    }
+
+    .logo {
+        background-color: #0D66B4;
+        padding: 1.5rem;
+        border-radius: 30px 2px 30px 0px;
+        filter: invert();
+        position: absolute;
+        transform: scale(0.2);
+        top: -20px;
+        left: center;
+        display: block
+    }
+
+    .register-form {
+        position: relative;
+    }
+
+}
+
+@media screen and (orientation:landscape) and (max-width: 650px){
+    .box-input {
+        padding: 7rem !important;
+        width: 800px !important;
+    }
+}
+
+/* TABLET - AUTH */
+@media (max-width: 835px) {
+
+    .wrapper-auth {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .register-left {
+        display: none;
+    }
+
+    .box-input {
+        padding: 6rem;
+        width: 900px;
+    }
+
+    .logo {
+        background-color: #0D66B4;
+        padding: 1.5rem;
+        border-radius: 30px 2px 30px 0px;
+        filter: invert();
+        position: absolute;
+        transform: scale(0.2);
+        top: -20px;
+        left: center;
+        display: block
+    }
+
+    .register-form {
+        position: relative;
+    }
+
+}
