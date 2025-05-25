@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import {useState} from "react"
+import { useState, useRef } from "react"
 import '../../resposiveGlobal.css';
 //import images
 import Logo from '../../assets/images/logo.svg'
-
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,6 +26,39 @@ const Login = () => {
       setError(error.response)
     }
   };
+
+// função de visualizar senha
+  const inputPasswordRef = useRef(null);
+  const btnEyePasswordIconRef = useRef(null);
+
+  const seePassword = (e) => {
+    e.preventDefault();
+
+    const input = inputPasswordRef.current;
+    const icon = btnEyePasswordIconRef.current;
+
+    if (icon.className === "fa-regular fa-eye-slash absolute right-[5px] top-[15px] cursor-pointer") {
+      input.type = "text";
+      icon.className = "fa-regular fa-eye absolute right-[5px] top-[15px] cursor-pointer";
+    } else {
+      input.type = "password";
+      icon.className = "fa-regular fa-eye-slash absolute right-[5px] top-[15px] cursor-pointer";
+    }
+  }
+
+  const verifyLetterInput = () => {
+
+    const value = inputPasswordRef.current.value.trim();
+    const icon = btnEyePasswordIconRef.current;
+    
+
+    if (!value) {
+      icon.className = " hidden";
+    } else {
+      icon.className = "block";
+    }
+    
+  }
 
   return (
     <div className="min-h-screen flex justify-center items-center container">
@@ -59,17 +91,25 @@ const Login = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   value={email || ""}
                 />
-                <input
-                  className="mb-[1.5em] border-b border-[#363636] pt-[0em] pr-[1em] pb-[1em] pl-[0em] outline-none"
-                  type="password"
-                  placeholder="Senha"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password || ""}
-                />
+                <div className="relative">
+                  <input
+                    ref={inputPasswordRef}
+                    onInput={verifyLetterInput}
+                    className="mb-[1.5em] border-b border-[#363636] pt-[0em] pr-[1em] pb-[1em] pl-[0em] outline-none w-full"
+                    type="password"
+                    placeholder="Senha"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password || ""}
+                  />
+                <button onClick={seePassword} className="hidden" ref={btnEyePasswordIconRef} >
+                  <i className="fa-regular fa-eye-slash absolute right-[5px] top-[15px] cursor-pointer"></i>
+                </button>
+
+                </div>
                 <input
                   className="opacity-90 bg-[#F2994B] hover:opacity-100 cursor-pointer transition-opacity p-[1em] pl-2 pr-2 text-white font-bold rounded-md"
                   type="submit"
-                  value="Cadastrar"
+                  value="Entrar"
                 />
                 {error && <p className="error">{error}</p>}
               </form>
