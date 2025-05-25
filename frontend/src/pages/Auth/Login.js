@@ -13,17 +13,16 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const user ={
+      email,
+      password
+    }
     try{
-      const response = await axios.get("http://127.0.0.1:5000/user/login",{
-        email, password
-      });
+      const response = await axios.post("http://127.0.0.1:5000/user/login", user);
       console.log(response.data)
-      alert("Usuário Logado")
       navigate('/')
     }catch(error){
       console.error(error.response)
-      setError(error.response)
     }
   };
 

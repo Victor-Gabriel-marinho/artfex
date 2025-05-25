@@ -23,17 +23,30 @@ export const criar_usuario = async (req, res) => {
     "nome": req.body.name,
     "email": req.body.email,
     "senha": req.body.password,
-    "cidade": req.body.cidade,
-    "estado": req.body.estado
   }
 
   try {
-    const { data, error } = await supabase.from("usuarios").insert(user);
-    console.log("Usuario cadastrado")
-    if (error) throw error;
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    const {data, error} = await supabase.auth.signUp(
+      {
+        email: user.email,
+        password: user.senha,
+        options:{
+          nome: user.nome
+        },
+        
+      })
+
+      if (error) {
+          console.error("Erro ao criar usuário:", error.message);
+          return res.status(400).json({ error: error.message });
+        }
+
+        console.log("Usuário criado com sucesso, verifique o email!");
+        return res.status(200).json({ message: "Usuário criado. Verifique seu email para ativar a conta." });
+
+  } catch (err) {
+    console.error("Erro inesperado:", err);
+    return res.status(500).json({ error: "Erro interno do servidor" });
   }
 };
 
@@ -57,28 +70,19 @@ export const deletar_usuario = async(req, res) => {
 
 export const login_user = async (req, res) => {
   const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-  const { email, password } = req.body;
+  const user = {
+    "email": req.body.email,
+    "senha": req.body.password,
+  }
   try {
-    // 1. Buscar usuário pelo e-mail
-    const { data, error } = await supabase
-      .from('usuarios')
-      .select('*')
-      .eq('email', email)
-    if (error || !data) {
-      return res.status(401).json({ error: 'Usuário não encontrado' });
-    }
-    if (data.senha !== password) {
-      return res.status(401).json({ error: 'Senha incorreta' });
-    }
-    return res.status(200).json({
-      message: 'Login realizado com sucesso',
-      usuario: {
-        id: data.id,
-        email: data.email,
-        nome: data.nome,
-      }
-    });
-
+      const { data, error } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password: user.senha
+})
+    if(error) throw error
+    console.log(data)
+    
+    return res.status(200).json({ message: "Login realizado com sucesso", session: data.session, user: data.user });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
