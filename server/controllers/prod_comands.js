@@ -14,5 +14,15 @@ export const get_produtos = async (_,res) => {
 }
 
 export const get_ususer = async (req,res) => {
-    console.log(req.params)
+    const id = req.query.id;
+    
+    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+
+    const {data,error} = await supabase.from('usuarios').select('*').eq('id', id).single()
+    
+    if (error) {
+        return res.status(500).json({error: error.message})
+    }
+
+    res.json(data)
 }
