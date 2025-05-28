@@ -1,8 +1,8 @@
 import { createClient } from "@supabase/supabase-js"
+import { supabase } from "../routers/client.js";
 
 //controller para pegar imagens
 export const get_produtos = async (_,res) => {
-    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
     const {data,error} = await supabase.from('produtos').select('*')
 
@@ -14,10 +14,8 @@ export const get_produtos = async (_,res) => {
 }
 
 export const get_ususer = async (req,res) => {
-    const id = req.query.id;
+    const id = req.params.id;
     
-    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-
     const {data,error} = await supabase.from('usuarios').select('*').eq('id', id).single()
     
     if (error) {

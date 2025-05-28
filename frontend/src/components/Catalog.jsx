@@ -7,6 +7,7 @@ export default function CatalogComponent() {
 
     const [produtos, setprodutos] = useState([])
     const [modalproduto, setModalProduto] = useState([])
+    const [user, setUser] = useState([])
     const [openModal, setOpenModal] = useState(false)
 
     useEffect(() => {
@@ -33,17 +34,17 @@ export default function CatalogComponent() {
         setOpenModal(true);
 
         setModalProduto(produto);
-        console.log(produto)  
         
         const id = produto.id_usuario
 
         axios
-        .get('http://127.0.0.1:5000/produtos/get_user/', {params: {id}})  
+        .get('http://127.0.0.1:5000/produtos/get_user/' + id)  
         .then((Response) => {
           console.log(Response.data)
+          setUser(Response.data)
         })
         .catch((Error) => {
-          console.log("erro ao fazer requisição")
+          console.log("erro ao fazer requisição", Error)
         })
 
       }
@@ -98,7 +99,7 @@ export default function CatalogComponent() {
                 <span className="text-[#F2994B] text-xl font-bold font-[Poppins] ">R${modalproduto.preco},00</span> 
                 <div className="flex">
                   <div className="bg-gray-300 w-[30px] h-[30px] rounded-full"></div>
-                  <p className="font-[Poppins] pl-2 font-normal">Name</p>
+                  <p className="font-[Poppins] pl-2 font-normal">{user.nome}</p>
                 </div>
                 <p className="text-gray-500 font">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed nesciunt id unde amet, omnis eaque illo temporibus vel debitis laudantium rerum? Lorem</p>
 
