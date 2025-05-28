@@ -8,6 +8,7 @@ import About from "./pages/Home/about";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./pages/Cart/cart";
 
+import Footer from "./components/Footer";
 // Pages
 function App() {
   return (
@@ -16,14 +17,14 @@ function App() {
     // </div>
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
       </BrowserRouter>
     </div>
   );

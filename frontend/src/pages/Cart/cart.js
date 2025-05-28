@@ -1,5 +1,7 @@
 import Footer from "../../components/Footer";
 import CartImage from "../../assets/images/carrinho-de-compras.png";
+import ImageItem from "../../assets/images/image.png"
+import TrashBin from "../../assets/images/trashBin.png"
 
 const Cart = () => {
   return (
@@ -11,26 +13,30 @@ const Cart = () => {
         </div>
       </div>
 
-      <section className="mb-4">
+      <section>
 
         {/* box - itens */}
-        <div className="flex w-[90%] m-auto justify-around gap-4">
+        <div className="flex w-[90%] m-auto gap-4">
 
-          <div className="mt-4 w-[60%] border-2 border-gray-400 rounded-xl">
-            <div className="w-[300px] h-[350px]">
-              <img className=" w-full h-full max-h-[300px] bg-cover rounded-xl" />
-              <div className="flex justify-between pl-2 pr-2 pt-1">
-                <span className="text-gray-500 font">Categoria</span>
-                <span className="text-[#F2994B] font-bold font-[Poppins]">
-                  R$100,00
-                </span>
+          <div className="flex flex-col justify-center w-[60%] border-2 border-gray-400 rounded-xl mt-4 gap-8 pt-3 pb-3">
+            <div className="pr-6 flex items-center justify-between">
+              <div className="flex w-[40%] justify-between items-center pl-5">
+                <input type="checkbox" className="w-[1.2rem] h-[1.2rem] cursor-pointer"/>
+                <div className="flex gap-3">
+                  <img src={ImageItem} className="w-[170px] h-[170px] rounded-xl"/>
+                  <div>
+                    <span className="text-gray-400"> Categoria </span>
+                    <p className="font-medium"> Name </p>
+                    <span className="text-[#F2994B] font-medium"> R$ 100,00 </span>
+                  </div>
+                </div>
               </div>
-              <p className="font-bold font-[Poppins] pl-2"></p>
+              <img src={TrashBin} className="w-[30px] h-[35px] cursor-pointer"/>
             </div>
           </div>
 
           {/* box - pagamento */}
-          <div className="mt-4 w-[40%] border-2 border-gray-400 pl-20 pr-20 rounded-xl">
+          <div className="mt-4 w-[40%] border-2 border-gray-400 pl-20 pr-20 rounded-xl flex flex-col justify-center">
             <h1 className="font-bold text-xl mb-5 mt-5"> Pagamento </h1>
 
             <div className="border-b-1 border-gray-400 flex justify-between p-5 mb-2">
@@ -42,15 +48,15 @@ const Cart = () => {
               <p className="font-bold"> Total </p>
               <span className="font-bold"> R$ 1000,00</span>
             </div>
-
-            <button className="bg-[#082621] p-2 w-full rounded-full text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+            
+            <button className="bg-[#082621] p-2 mb-3 w-full rounded-full text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
               Comprar agora
             </button>
           </div>
         </div>
       </section>
 
-      <footer>
+      <footer className="mt-50">
         <Footer/>
       </footer>
     </div>
