@@ -24,6 +24,10 @@ const Home = () => {
               href="#"
               className="text-black bg-[url('./images/carrinho-de-compras.png')]"
             ></a>
+            <li className="text-center border-2 bg-none text-white mr-2">
+              {" "}
+              <Link to="/cart"> Carrinho </Link>
+            </li>
             <li className="w-[65px] text-center border-2 bg-none text-white pr-[8px] pl-[8px] rounded-xl">
               {" "}
               <Link to="/login"> Login </Link>

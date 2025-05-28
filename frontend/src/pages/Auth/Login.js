@@ -60,7 +60,7 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex justify-center items-center container">
+    <div className="min-h-screen flex justify-center items-center container w-full">
       <div className="flex justify-center items-center w-full wrapper-auth">
         {/* REGISTER LEFT */}
         <section className="flex-1 bg-[url('./images/tela_registro.png')] bg-cover bg-center h-screen flex flex-col items-center justify-center register-left">

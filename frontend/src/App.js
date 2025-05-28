@@ -6,6 +6,7 @@ import About from "./pages/Home/about";
 
 //Router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Cart from "./pages/Cart/cart";
 
 // Pages
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/about" element={<About />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
     </div>
