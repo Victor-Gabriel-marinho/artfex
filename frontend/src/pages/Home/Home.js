@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "../tailwind/output.css";
 import Footer from "../../components/Footer";
+import { useLocation } from "react-router-dom";
+
 const Home = () => {
+  const location = useLocation();
+  const { user, isuser } = location.state || {};
+
   return (
     <div>
       <header className="bg-[url('./images/fundo-header.png')] bg-fixed bg-no-repeat bg-bottom h-130 pt-5 font-poppins relative">
@@ -9,7 +14,7 @@ const Home = () => {
           <ul className="flex justify-between items-center w-55 m-auto ml-110">
             <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer">
               {" "}
-              <Link to="/about">  </Link>
+              <Link to="/about"> </Link>
             </li>
             <li className="underline decoration-[#F2994B] underline-offset-[3px]">
               Home
@@ -24,18 +29,23 @@ const Home = () => {
               href="#"
               className="text-black bg-[url('./images/carrinho-de-compras.png')]"
             ></a>
-            <li className="text-center border-2 bg-none text-white mr-2">
-              {" "}
-              <Link to="/cart"> Carrinho </Link>
-            </li>
-            <li className="w-[65px] text-center border-2 bg-none text-white pr-[8px] pl-[8px] rounded-xl">
-              {" "}
-              <Link to="/login"> Login </Link>
-            </li>
-            <li className="p-[3px] w-[120px] text-center rounded-[20px] bg-[#F2994B] font-bold">
-              {" "}
-              <Link to="/register">Criar conta</Link>{" "}
-            </li>
+            {isuser ? (
+              <li className="text-center border-2 bg-none text-white mr-2">
+                {" "}
+                <Link to="/cart"> Carrinho </Link>
+              </li>
+            ) : (
+              <div className="flex flex-row justify-between items-center w-[200px]">
+                <li className="w-[65px] text-center border-2 bg-none text-white pr-[8px] pl-[8px] rounded-xl">
+                  {" "}
+                  <Link to="/login"> Login </Link>
+                </li>
+                <li className="p-[3px] w-[120px] text-center rounded-[20px] bg-[#F2994B] font-bold">
+                  {" "}
+                  <Link to="/register">Criar conta</Link>{" "}
+                </li>
+              </div>
+            )}
           </ul>
         </nav>
         <section className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-normal">
@@ -70,48 +80,85 @@ const Home = () => {
             Valorize seu talento e aumente suas vendas — seja um artesão
             parceiro da nossa loja de artesanato cearense!
           </p>
-          <p className="mt-[30px] text-2xl text-[#2F4B3C]">participe das nossas <a href="#" className="bg-[#F2994B] text-white pl-[5px] pr-[5px] rounded-xl ">Redes Sociais</a></p>
+          <p className="mt-[30px] text-2xl text-[#2F4B3C]">
+            participe das nossas{" "}
+            <a
+              href="#"
+              className="bg-[#F2994B] text-white pl-[5px] pr-[5px] rounded-xl "
+            >
+              Redes Sociais
+            </a>
+          </p>
         </div>
       </section>
       <section className="flex flex-col justify-between items-top w-[720px] m-auto h-[260px] p-[20px] relative">
-          <div className="bg-[#F2994B] w-[157px] h-[188px] absolute top-0 right-0 rounded-[20px] flex items-center justify-center">
-              <div className="bg-[url('./images/Logo.svg')] bg-cover w-3/4 h-3/4 invert">
-
-              </div>
-          </div>
-          <h2 className="text-[#F2994B] text-5xl font-poppins">Baixe o nosso aplicativo</h2>
-          <p className="w-[420px] text-[#606060] text-2xl font-semibold">tenha acesso a todas as funcionalidades na palma da sua mão</p>
-          <a href="#" className="m-auto text-white text-center bg-[#2F4B3C] rounded-xl p-[1px] w-[167px]">Baixar app</a>
-        </section>
-      <h2 className="text-[#2F4B3C] text-4xl mt-30 text-center">Depoimentos de nossos artesãos</h2>
+        <div className="bg-[#F2994B] w-[157px] h-[188px] absolute top-0 right-0 rounded-[20px] flex items-center justify-center">
+          <div className="bg-[url('./images/Logo.svg')] bg-cover w-3/4 h-3/4 invert"></div>
+        </div>
+        <h2 className="text-[#F2994B] text-5xl font-poppins">
+          Baixe o nosso aplicativo
+        </h2>
+        <p className="w-[420px] text-[#606060] text-2xl font-semibold">
+          tenha acesso a todas as funcionalidades na palma da sua mão
+        </p>
+        <a
+          href="#"
+          className="m-auto text-white text-center bg-[#2F4B3C] rounded-xl p-[1px] w-[167px]"
+        >
+          Baixar app
+        </a>
+      </section>
+      <h2 className="text-[#2F4B3C] text-4xl mt-30 text-center">
+        Depoimentos de nossos artesãos
+      </h2>
       <section className="flex justify-between items-center flex-wrap m-auto mt-5 gap-3">
-            <div className="bg-[#F2994B] w-[450px] p-[10px] rounded-xl m-auto">
-             <div className="bg-[url('./images/mulher1.png')] bg-cover h-[100px] w-[100px] absolute rounded-[100%]"></div>
-             <h3 className="text-white text-center text-2xl mt-[40px]" >Olinda Rendeira</h3>
-             <p className="text-white w-[90%] m-auto mt-8">Um projeto deveria ser feito para trazer o interesse e a cultura não morrer. Um projeto louvável pra trazer visibilidade, seria a chave, a questão das redes seria bem essencial.. </p>
-            </div>
-            <div className="bg-[#F2994B] w-[450px] p-[10px] rounded-xl m-auto">
-             <div className="bg-[url('./images/mulher2.png')] bg-cover  h-[100px] w-[100px] absolute rounded-[100%]"></div>
-             <h3 className="text-white text-center text-2xl mt-[40px]" >Flaviana</h3>
-             <p className="text-white w-[90%] m-auto mt-8">A opinião quando ao projeto é que seria uma benção, seria muito bom por trazer visibilidade ao trabalho. </p>
-            </div>
-            <div className="bg-[#F2994B] w-[450px] p-[10px] rounded-xl m-auto">
-             <div className="bg-[url('./images/homem.png')] bg-cover  h-[100px] w-[100px] absolute rounded-[100%]"></div>
-             <h3 className="text-white text-center text-2xl mt-[40px]" >Nazareno</h3>
-             <p className="text-white w-[90%] m-auto mt-8">Importante, a arte está aos poucos acabando e a educação deveria trazer para os mais novos essa abordagem para não acarretar seu fim.Interessante por trazer visibilidade </p>
-            </div>
-            <div className="bg-[#F2994B] w-[450px] p-[10px] rounded-xl m-auto">
-             <div className="bg-[url('./images/mulher3.png')] bg-cover  h-[100px] w-[100px] absolute rounded-[100%]"></div>
-             <h3 className="text-white text-center text-2xl mt-[40px]" >Marlúcia</h3>
-             <p className="text-white w-[90%] m-auto mt-8">Uma ideia legal, trazer uma dificuldade maior e ampliar as vendas.</p>
-            </div>
-          </section>
-          <footer className="mt-50">
-            <Footer/>
-          </footer>
+        <div className="bg-[#F2994B] w-[450px] p-[10px] rounded-xl m-auto">
+          <div className="bg-[url('./images/mulher1.png')] bg-cover h-[100px] w-[100px] absolute rounded-[100%]"></div>
+          <h3 className="text-white text-center text-2xl mt-[40px]">
+            Olinda Rendeira
+          </h3>
+          <p className="text-white w-[90%] m-auto mt-8">
+            Um projeto deveria ser feito para trazer o interesse e a cultura não
+            morrer. Um projeto louvável pra trazer visibilidade, seria a chave,
+            a questão das redes seria bem essencial..{" "}
+          </p>
+        </div>
+        <div className="bg-[#F2994B] w-[450px] p-[10px] rounded-xl m-auto">
+          <div className="bg-[url('./images/mulher2.png')] bg-cover  h-[100px] w-[100px] absolute rounded-[100%]"></div>
+          <h3 className="text-white text-center text-2xl mt-[40px]">
+            Flaviana
+          </h3>
+          <p className="text-white w-[90%] m-auto mt-8">
+            A opinião quando ao projeto é que seria uma benção, seria muito bom
+            por trazer visibilidade ao trabalho.{" "}
+          </p>
+        </div>
+        <div className="bg-[#F2994B] w-[450px] p-[10px] rounded-xl m-auto">
+          <div className="bg-[url('./images/homem.png')] bg-cover  h-[100px] w-[100px] absolute rounded-[100%]"></div>
+          <h3 className="text-white text-center text-2xl mt-[40px]">
+            Nazareno
+          </h3>
+          <p className="text-white w-[90%] m-auto mt-8">
+            Importante, a arte está aos poucos acabando e a educação deveria
+            trazer para os mais novos essa abordagem para não acarretar seu
+            fim.Interessante por trazer visibilidade{" "}
+          </p>
+        </div>
+        <div className="bg-[#F2994B] w-[450px] p-[10px] rounded-xl m-auto">
+          <div className="bg-[url('./images/mulher3.png')] bg-cover  h-[100px] w-[100px] absolute rounded-[100%]"></div>
+          <h3 className="text-white text-center text-2xl mt-[40px]">
+            Marlúcia
+          </h3>
+          <p className="text-white w-[90%] m-auto mt-8">
+            Uma ideia legal, trazer uma dificuldade maior e ampliar as vendas.
+          </p>
+        </div>
+      </section>
+      <footer className="mt-50">
+        <Footer />
+      </footer>
     </div>
   );
 };
 
 export default Home;
-

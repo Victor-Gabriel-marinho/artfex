@@ -2,8 +2,16 @@ import Footer from "../../components/Footer";
 import CartImage from "../../assets/images/carrinho-de-compras.png";
 import ImageItem from "../../assets/images/image.png"
 import TrashBin from "../../assets/images/trashBin.png"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 import "../../resposiveGlobal.css";
+
+// useEffect(() => {
+//   const fetchCartItems = async () => {
+//     console.log('Fetching cart items...');
+//   }
+// }, []);
 
 const Cart = () => {
   return (

@@ -1,58 +1,75 @@
 import Modal from "../components/Modal";
 import { useEffect, useState } from "react";
-import axios from "axios"
-
+import axios from "axios";
 
 export default function CatalogComponent() {
+  const [produtos, setprodutos] = useState([]);
+  const [modalproduto, setModalProduto] = useState([]);
+  const [user, setUser] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [produto_adicionado, setProdutoAdicionado] = useState(false);
 
-    const [produtos, setprodutos] = useState([])
-    const [modalproduto, setModalProduto] = useState([])
-    const [user, setUser] = useState([])
-    const [openModal, setOpenModal] = useState(false)
+  useEffect(() => {
+    const body = document.body;
+    if (openModal) {
+      body.classList.add("overflow-y-hidden");
+    } else {
+      body.classList.remove("overflow-y-hidden");
+    }
+  }, [openModal]);
 
-    useEffect(() => {
-        const body = document.body;
-        if (openModal) {
-          body.classList.add("overflow-y-hidden");
-        } else {
-          body.classList.remove("overflow-y-hidden");
-        }
-      }, [openModal]);
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:5000/produtos/produtos")
+      .then((Response) => {
+        setprodutos(Response.data);
+        console.log(Response.data);
+      })
+      .catch((Error) => {
+        console.log("erro ao fazer requisição");
+      });
+  }, []);
 
-    useEffect(() => {
-        axios
-        .get('http://127.0.0.1:5000/produtos/produtos')
-        .then(Response => {
-          setprodutos(Response.data)
-          console.log(Response.data)
-        }).catch(Error => {
-          console.log("erro ao fazer requisição")
-        })
-      }, [])
+  const get_modal = (produto) => {
+    setOpenModal(true);
 
-      const get_modal= (produto) => {
-        setOpenModal(true);
+    setModalProduto(produto);
 
-        setModalProduto(produto);
-        
-        const id = produto.id_usuario
+    const id = produto.id_usuario;
 
-        axios
-        .get('http://127.0.0.1:5000/produtos/get_user/' + id)  
-        .then((Response) => {
-          console.log(Response.data)
-          setUser(Response.data)
-        })
-        .catch((Error) => {
-          console.log("erro ao fazer requisição", Error)
-        })
+    axios
+      .get("http://127.0.0.1:5000/produtos/get_user/" + id)
+      .then((Response) => {
+        setUser(Response.data);
+      })
+      .catch((Error) => {
+        console.log("erro ao fazer requisição", Error);
+      });
+  };
 
-      }
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
-      const handleCloseModal = () => {
-        setOpenModal(false);
-      }
+  const add_to_cart = () => {
+    const id_user = user.id;
+    const id_product = modalproduto.id;
 
+    axios
+      .post(
+        `http://127.0.0.1:5000/produtos/insert_product_cart/${id_product}/${id_user}`
+      )
+      .then((Response) => {
+        console.log(
+          "Produto adicionado ao carrinho com sucesso",
+          Response.data
+        );
+        produto_adicionado(true);
+      })
+      .catch((error) => {
+        console.error("erro ao adicionar produto no carrinho", error);
+      });
+  };
 
   return (
     <div>
@@ -66,12 +83,15 @@ export default function CatalogComponent() {
           />
         </form>
 
-        <div
-          className="flex flex-wrap gap-10 justify-center cursor-pointer"
-        >
+        <div className="flex flex-wrap gap-10 justify-center cursor-pointer">
           {produtos.map((produto) => (
-            <div onClick={() => {get_modal(produto)}} key={produto.id} className="w-[300px] h-[350px]">
-
+            <div
+              onClick={() => {
+                get_modal(produto);
+              }}
+              key={produto.id}
+              className="w-[300px] h-[350px]"
+            >
               <img
                 src={produto.url}
                 className=" w-full h-full max-h-[300px] bg-cover rounded-xl"
@@ -88,27 +108,47 @@ export default function CatalogComponent() {
         </div>
 
         <Modal isOpen={openModal} setCloseModal={handleCloseModal}>
-            <div className="flex justify-center items-center">
-              {/* imagem */}
-              <img className="w-[270px] h-[290px] bg-cover rounded-xl mr-[2em]" src={modalproduto.url} alt="" />
+          <div className="flex justify-center items-center">
+            {/* imagem */}
+            <img
+              className="w-[270px] h-[290px] bg-cover rounded-xl mr-[2em]"
+              src={modalproduto.url}
+              alt=""
+            />
 
-              {/* descrição da imagem */}
-              <div className="w-full max-w-[300px] flex flex-col gap-3"> 
-                <span className="text-gray-500 font">Categoria</span>
-                <p className="font-[Poppins] pl-2 font-medium text-2xl">{modalproduto.nome}</p>
-                <span className="text-[#F2994B] text-xl font-bold font-[Poppins] ">R${modalproduto.preco},00</span> 
-                <div className="flex">
-                  <div className="bg-gray-300 w-[30px] h-[30px] rounded-full"></div>
-                  <p className="font-[Poppins] pl-2 font-normal">{user.nome}</p>
-                </div>
-                <p className="text-gray-500 font">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed nesciunt id unde amet, omnis eaque illo temporibus vel debitis laudantium rerum? Lorem</p>
+            {/* descrição da imagem */}
+            <div className="w-full max-w-[300px] flex flex-col gap-3">
+              <span className="text-gray-500 font">Categoria</span>
+              <p className="font-[Poppins] pl-2 font-medium text-2xl">
+                {modalproduto.nome}
+              </p>
+              <span className="text-[#F2994B] text-xl font-bold font-[Poppins] ">
+                R${modalproduto.preco},00
+              </span>
+              <div className="flex">
+                <div className="bg-gray-300 w-[30px] h-[30px] rounded-full"></div>
+                <p className="font-[Poppins] pl-2 font-normal">{user.nome}</p>
+              </div>
+              <p className="text-gray-500 font">{modalproduto.descricao}</p>
 
-                <div className="flex justify-between gap-2 w-[330px]">
-                  <button className="bg-[#082621] p-1 w-full rounded-2xl text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity">adicionar ao carrinho</button>
-                  <button className="bg-[#F2994B] p-1 w-full rounded-2xl text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity">comprar agora</button>
-                </div>
+              <div className="flex justify-between gap-2 w-[330px]">
+                {produto_adicionado ? (
+                  <p>Produto adicionado com sucesso.</p>
+                ) : (
+                  <button
+                    className="bg-[#082621] p-1 w-full rounded-2xl text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity"
+                    onClick={add_to_cart}
+                  >
+                    adicionar ao carrinho
+                  </button>
+                )}
+
+                <button className="bg-[#F2994B] p-1 w-full rounded-2xl text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+                  comprar agora
+                </button>
               </div>
             </div>
+          </div>
         </Modal>
       </section>
     </div>

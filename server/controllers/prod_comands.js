@@ -24,3 +24,20 @@ export const get_ususer = async (req,res) => {
 
     res.json(data)
 }
+
+export const get_cart = async (req, res) => {
+    const user_id = req.params.id_user;
+    const product_id = req.params.id_product;
+
+    const { data, error } = await supabase
+        .from('carrinho')
+        .insert([{ user_id: user_id, product_id: product_id }])
+        .select();
+
+    if (error) {
+        return res.status(500).json({ error: error.message });
+    }
+
+    res.json(data);
+    
+}
