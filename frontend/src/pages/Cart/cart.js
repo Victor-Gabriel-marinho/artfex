@@ -3,6 +3,8 @@ import CartImage from "../../assets/images/carrinho-de-compras.png";
 import ImageItem from "../../assets/images/image.png"
 import TrashBin from "../../assets/images/trashBin.png"
 
+import "../../resposiveGlobal.css";
+
 const Cart = () => {
   return (
     <div className="mt-4">
@@ -13,13 +15,13 @@ const Cart = () => {
         </div>
       </div>
 
-      <section>
+      <section className="h-[60vh] flex">
 
         {/* box - itens */}
-        <div className="flex w-[90%] m-auto gap-4">
+        <div className="flex w-[90%] m-auto gap-4 container-cart">
 
-          <div className="flex flex-col justify-center w-[60%] border-2 border-gray-400 rounded-xl mt-4 gap-8 pt-3 pb-3">
-            <div className="pr-6 flex items-center justify-between">
+          <div className="flex flex-col justify-center w-[60%] border-2 border-gray-400 rounded-xl gap-8 box-itens-cart">
+            <div className="flex items-center justify-between">
               <div className="flex w-[40%] justify-between items-center pl-5">
                 <input type="checkbox" className="w-[1.2rem] h-[1.2rem] cursor-pointer"/>
                 <div className="flex gap-3">
@@ -31,12 +33,13 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-              <img src={TrashBin} className="w-[30px] h-[35px] cursor-pointer"/>
-            </div>
+              <img src={TrashBin} className="w-[30px] h-[35px] cursor-pointer mr-4"/>
+            </div>    
+        
           </div>
 
           {/* box - pagamento */}
-          <div className="mt-4 w-[40%] border-2 border-gray-400 pl-20 pr-20 rounded-xl flex flex-col justify-center">
+          <div className="w-[40%] border-2 border-gray-400 pl-20 pr-20 rounded-xl flex flex-col justify-center box-itens-pay">
             <h1 className="font-bold text-xl mb-5 mt-5"> Pagamento </h1>
 
             <div className="border-b-1 border-gray-400 flex justify-between p-5 mb-2">
@@ -56,7 +59,7 @@ const Cart = () => {
         </div>
       </section>
 
-      <footer className="mt-50">
+      <footer className="mt-8">
         <Footer/>
       </footer>
     </div>

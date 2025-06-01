@@ -5,6 +5,7 @@
 /* CELULAR - AUTH */
 @media (max-width: 600px) {
 
+    /* REGISTRO - LOGIN E CADASTRO */
     .wrapper-auth {
         display: flex;
         flex-direction: column;
@@ -35,6 +36,18 @@
         position: relative;
     }
 
+    /* CARRINHO */
+    .container-cart {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box-itens-cart,
+    .box-itens-pay {
+        width: 100%;
+    }
 }
 
 @media screen and (orientation:landscape) and (max-width: 650px){
