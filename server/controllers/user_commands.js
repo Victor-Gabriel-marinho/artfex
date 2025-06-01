@@ -45,6 +45,7 @@ export const criar_usuario = async (req, res) => {
     const { error: insertError } = await supabase.from("usuarios").insert({
       id: userId,
       nome: user.nome,
+      senha: user.senha,
       email: user.email,
       cidade: user.cidade,
       estado: user.estado
@@ -96,8 +97,8 @@ export const login_user = async (req, res) => {
     console.log(data)
     
     return res.status(200).json({ message: "Login realizado com sucesso", session: data.session, user: data.user });
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 };
 
