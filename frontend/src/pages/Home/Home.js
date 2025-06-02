@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "../tailwind/output.css";
 import Footer from "../../components/Footer";
-import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context";
 
 const Home = () => {
-  const location = useLocation();
-  const { user, isuser } = location.state || {};
+  const { user } = useContext(UserContext);
 
   return (
     <div>
@@ -29,7 +29,7 @@ const Home = () => {
               href="#"
               className="text-black bg-[url('./images/carrinho-de-compras.png')]"
             ></a>
-            {isuser ? (
+            {user ? (
               <li className="text-center border-2 bg-none text-white mr-2">
                 {" "}
                 <Link to="/cart"> Carrinho </Link>

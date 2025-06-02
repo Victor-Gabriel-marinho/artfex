@@ -94,7 +94,7 @@ export const login_user = async (req, res) => {
       password: user.senha
 })
     if(error) throw error
-    console.log(data)
+
     
     return res.status(200).json({ message: "Login realizado com sucesso", session: data.session, user: data.user });
   } catch (error) {

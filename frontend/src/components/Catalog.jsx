@@ -1,11 +1,14 @@
 import Modal from "../components/Modal";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../context";
 
 export default function CatalogComponent() {
   const [produtos, setprodutos] = useState([]);
   const [modalproduto, setModalProduto] = useState([]);
-  const [user, setUser] = useState([]);
+  const [seller, setseller] = useState([]);
+  const user = useContext(UserContext)
   const [openModal, setOpenModal] = useState(false);
   const [produto_adicionado, setProdutoAdicionado] = useState(false);
 
@@ -40,7 +43,7 @@ export default function CatalogComponent() {
     axios
       .get("http://127.0.0.1:5000/produtos/get_user/" + id)
       .then((Response) => {
-        setUser(Response.data);
+        setseller(Response.data);
       })
       .catch((Error) => {
         console.log("erro ao fazer requisição", Error);
@@ -52,7 +55,7 @@ export default function CatalogComponent() {
   };
 
   const add_to_cart = () => {
-    const id_user = user.id;
+    const id_user = user.user.user.id
     const id_product = modalproduto.id;
 
     axios
@@ -127,7 +130,7 @@ export default function CatalogComponent() {
               </span>
               <div className="flex">
                 <div className="bg-gray-300 w-[30px] h-[30px] rounded-full"></div>
-                <p className="font-[Poppins] pl-2 font-normal">{user.nome}</p>
+                <p className="font-[Poppins] pl-2 font-normal">{seller.nome}</p>
               </div>
               <p className="text-gray-500 font">{modalproduto.descricao}</p>
 

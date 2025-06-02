@@ -1,15 +1,16 @@
   import { Link } from "react-router-dom";
   import axios from 'axios';
+  import { useContext } from "react";
+  import { UserContext } from "../../context";
   import { useNavigate } from "react-router-dom";
-  import { useState, useRef, createContext } from "react"
+  import { useState, useRef} from "react"
   import '../../resposiveGlobal.css';
-  //import images
   import Logo from '../../assets/images/logo.svg'
 
   const Login = () => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [isuser, setIsUser] = useState(false);
+    const [password, setPassword] = useState(""); 
+    const { user, setUser } = useContext(UserContext);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -21,8 +22,11 @@
       }
       try{
         const response = await axios.post("http://127.0.0.1:5000/user/login", user);
+
         console.log(response.data)
-        navigate('/', { state: { user: response.data, isuser: true } });
+        setUser(response.data);
+
+        navigate('/');
       }catch(error){
         console.error(error.response)
       }
