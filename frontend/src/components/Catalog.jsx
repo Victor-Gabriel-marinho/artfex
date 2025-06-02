@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../context";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export default function CatalogComponent() {
   const [produtos, setprodutos] = useState([]);
@@ -10,6 +11,8 @@ export default function CatalogComponent() {
   const [seller, setseller] = useState([]);
   const user = useContext(UserContext)
   const [openModal, setOpenModal] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [erro, setErro] = useState(false)
   const [produto_adicionado, setProdutoAdicionado] = useState(false);
 
   useEffect(() => {
@@ -22,13 +25,16 @@ export default function CatalogComponent() {
   }, [openModal]);
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get("http://127.0.0.1:5000/produtos/produtos")
       .then((Response) => {
         setprodutos(Response.data);
-        console.log(Response.data);
+        setLoading(false)
       })
       .catch((Error) => {
+        setLoading(false)
+        setErro(true)
         console.log("erro ao fazer requisição");
       });
   }, []);
@@ -76,7 +82,17 @@ export default function CatalogComponent() {
 
   return (
     <div>
-      <section className="bg-white w-full max-w-[1300px] m-auto rounded-xl mt-[-250px] p-4 shadow-2xl">
+      {loading ? (
+        (
+        <div className="bg-white w-full max-w-[1300px] m-auto rounded-xl mt-[-250px] p-4 shadow-2xl">
+          <div className="w-full h-full flex items-center justify-center">
+              <AiOutlineLoading className="text-8xl text-gray-400 animate-spin" />
+          </div>
+        </div>
+        )
+      ) : produtos ? 
+      (
+        <section className="bg-white w-full max-w-[1300px] m-auto rounded-xl mt-[-250px] p-4 shadow-2xl">
         <form className="relative">
           <div className="bg-[url('./images/lupa.png')] bg-cover w-[20px] h-[20px] absolute left-40 top-6.5"></div>
           <input
@@ -154,6 +170,12 @@ export default function CatalogComponent() {
           </div>
         </Modal>
       </section>
+      ) : erro ? (
+        <div className="bg-white w-full max-w-[1300px] m-auto rounded-xl mt-[-250px] p-4 shadow-2xl">
+            <p>Deu erro :/</p>
+        </div>
+      ) : ""
+     }
     </div>
   );
 }

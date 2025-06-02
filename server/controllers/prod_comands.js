@@ -1,4 +1,3 @@
-import { createClient } from "@supabase/supabase-js"
 import { supabase } from "../routers/client.js";
 
 //controller para pegar imagens
