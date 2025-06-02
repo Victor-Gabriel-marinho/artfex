@@ -1,8 +1,8 @@
 import Footer from "../../components/Footer";
 import CartImage from "../../assets/images/carrinho-de-compras.png";
-import ImageItem from "../../assets/images/image.png";
 import TrashBin from "../../assets/images/trashBin.png";
 import { useEffect, useState } from "react";
+import { AiOutlineLoading } from "react-icons/ai";
 import { useContext } from "react";
 import { UserContext } from "../../context";
 import axios from "axios";
@@ -14,16 +14,20 @@ const Cart = () => {
   const { user } = useContext(UserContext);
   const [cart_prod, setCartProd] = useState([]);
   const [valortotal, setvalortotal] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
   const id = user.user.id;
+  setLoading(true)
   axios
     .get("http://127.0.0.1:5000/produtos/get_cart/" + id)
     .then((response) => {
       setCartProd(response.data);
+      setLoading(false)
     })
     .catch((error) => {
       console.log('erro ao fazer requisição:', error);
+      setLoading(false)
     })
 }, []);
 
@@ -32,6 +36,10 @@ const somar_valores = () => {
   setvalortotal(valores.reduce((acumulado,valorAtual) => acumulado + valorAtual, 0))
 }
 
+const check_prod = (e) => {
+  const checkbox = e.target.value;
+  console.log(checkbox)
+}
 
   return (
     <div className="mt-4" onLoad={somar_valores}>
@@ -47,12 +55,13 @@ const somar_valores = () => {
         <div className="flex w-[90%] m-auto gap-4 container-cart">
           
           <div className="flex flex-col justify-center w-[60%] border-2 border-gray-400 rounded-xl gap-8 box-itens-cart">
-           { cart_prod.map((prod) =>(
+           {!loading ? cart_prod.map((prod) =>(
             <div className="flex items-center justify-between" key={prod.id}>
               <div className="flex w-[40%] justify-between items-center pl-5" >
                 <input
                   type="checkbox"
                   className="w-[1.2rem] h-[1.2rem] cursor-pointer"
+                  onClick={check_prod}
                 />
                 <div className="flex ml-2 gap-3">
                   <img
@@ -73,7 +82,14 @@ const somar_valores = () => {
                 src={TrashBin}
                 className="w-[30px] h-[35px] cursor-pointer mr-4"
               />
-            </div>))}
+            </div>)) 
+            : 
+            <div className="h-full w-full flex items-center justify-center">
+              <div className="flex items-center justify-center w-[100px] h-[100px]">
+                <AiOutlineLoading className="text-5xl animate-spin text-gray-400" />
+              </div>
+            </div>
+            }
           </div>
 
           {/* box - pagamento */}

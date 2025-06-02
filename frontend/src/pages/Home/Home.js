@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import styles from "../tailwind/output.css";
+import CartImage from "../../assets/images/carrinho-de-compras.png";
 import Footer from "../../components/Footer";
 import { useContext } from "react";
 import { UserContext } from "../../context";
 
 const Home = () => {
-  const { user } = useContext(UserContext);
+  const auth = useContext(UserContext);
+  const user = auth
+  console.log(user)
 
   return (
     <div>
@@ -29,12 +32,7 @@ const Home = () => {
               href="#"
               className="text-black bg-[url('./images/carrinho-de-compras.png')]"
             ></a>
-            {user ? (
-              <li className="text-center border-2 bg-none text-white mr-2">
-                {" "}
-                <Link to="/cart"> Carrinho </Link>
-              </li>
-            ) : (
+            {!user.user ? (        
               <div className="flex flex-row justify-between items-center w-[200px]">
                 <li className="w-[65px] text-center border-2 bg-none text-white pr-[8px] pl-[8px] rounded-xl">
                   {" "}
@@ -45,7 +43,12 @@ const Home = () => {
                   <Link to="/register">Criar conta</Link>{" "}
                 </li>
               </div>
-            )}
+            ) : (
+              <li className="text-center bg-none text-white w-[35px]">
+                {" "}
+                <Link to="/cart"> <img src={CartImage} /> </Link>
+              </li>
+            ) }
           </ul>
         </nav>
         <section className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-normal">

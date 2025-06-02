@@ -5,6 +5,9 @@ export const UserContext = createContext();
 export const Userprovider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem('user');
+    if (storedUser === 'undefined' || storedUser === 'null') {
+    localStorage.removeItem('user');
+  }
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
