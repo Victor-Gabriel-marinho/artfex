@@ -10,7 +10,7 @@ export const get_produtos = async (_,res) => {
     }
 
     res.json(data)
-}
+};
 
 export const get_ususer = async (req,res) => {
     const id = req.params.id;
@@ -22,7 +22,7 @@ export const get_ususer = async (req,res) => {
     }
 
     res.json(data)
-}
+};
 
 export const add_cart = async (req, res) => {
     const user_id = req.params.id_user;
@@ -39,7 +39,7 @@ export const add_cart = async (req, res) => {
 
     res.json(data);
     
-}
+};
 
 export const get_cart = async (req, res) => {
     const user_id = req.params.id_user;
@@ -65,4 +65,4 @@ export const get_cart = async (req, res) => {
     }
 
     res.json(prodcts);    
-}
+};

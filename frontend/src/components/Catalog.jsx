@@ -69,14 +69,12 @@ export default function CatalogComponent() {
         `http://127.0.0.1:5000/produtos/insert_product_cart/${id_product}/${id_user}`
       )
       .then((Response) => {
-        console.log(
-          "Produto adicionado ao carrinho com sucesso",
-          Response.data
-        );
-        produto_adicionado(true);
+        console.log("Produto adicionado ao carrinho com sucesso", Response.data);
+        setProdutoAdicionado(true);
       })
       .catch((error) => {
         console.error("erro ao adicionar produto no carrinho", error);
+        setErro(true)
       });
   };
 
@@ -153,6 +151,8 @@ export default function CatalogComponent() {
               <div className="flex justify-between gap-2 w-[330px]">
                 {produto_adicionado ? (
                   <p>Produto adicionado com sucesso.</p>
+                ) : erro ? (
+                    <p>Produto já adicionado ao carrinho</p>
                 ) : (
                   <button
                     className="bg-[#082621] p-1 w-full rounded-2xl text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity"

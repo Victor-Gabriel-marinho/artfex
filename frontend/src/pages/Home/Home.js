@@ -8,7 +8,6 @@ import { UserContext } from "../../context";
 const Home = () => {
   const auth = useContext(UserContext);
   const user = auth
-  console.log(user)
 
   return (
     <div>
