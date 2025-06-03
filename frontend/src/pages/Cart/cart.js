@@ -16,7 +16,7 @@ const Cart = () => {
   const [desiredProduct, setdesireProduct] = useState([]);
   const [valortotal, setvalortotal] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [openmodal, setopenmodal] = useState(false)
+  const [openmodal, setopenmodal] = useState(false);
 
   useEffect(() => {
     const id = user.user.id;
@@ -33,9 +33,9 @@ const Cart = () => {
       });
   }, []);
 
-    useEffect(() => {
-      somar_valores()
-  }, [desiredProduct])
+  useEffect(() => {
+    somar_valores();
+  }, [desiredProduct]);
 
   const somar_valores = () => {
     const valores = desiredProduct.map((prod) => prod.preco);
@@ -45,28 +45,28 @@ const Cart = () => {
   };
 
   const check_prod = (e, prod) => {
-      const checkbox = e.target.checked;
+    const checkbox = e.target.checked;
 
-      if (checkbox) {
-        setdesireProduct(prevProduct => [...prevProduct,prod]);
-      } else {
-        setdesireProduct(prevProduct => 
-          prevProduct.filter(produto => produto.id !== prod.id)
-        )
-      }
-      somar_valores()
-};
+    if (checkbox) {
+      setdesireProduct((prevProduct) => [...prevProduct, prod]);
+    } else {
+      setdesireProduct((prevProduct) =>
+        prevProduct.filter((produto) => produto.id !== prod.id)
+      );
+    }
+    somar_valores();
+  };
 
-  const delet_item = () => {
-      setopenmodal(true)
-  }
+  const delet_item = (prod) => {
+    console.log(prod);
+  };
 
-  const handleCloseModal = () => {
-    setopenmodal(false)
-  }
+  const handleModal = () => {
+    setopenmodal(!openmodal);
+  };
 
   return (
-    <div className="mt-4" >
+    <div className="mt-4">
       <div className="bg-[#F2994B] w-[90%] h-15 rounded-full m-auto pl-10 flex">
         <div className="flex gap-2 items-center ">
           <img src={CartImage} className="w-[35px] " />
@@ -84,10 +84,28 @@ const Cart = () => {
                   className="flex items-center justify-between"
                   key={prod.id}
                 >
+                  <Modal isOpen={openmodal} setCloseModal={handleModal}>
+                    <h2>tem certeza?</h2>
+                    <input
+                      className="w-100px bg-zinc-400 text-black cursor-pointer"
+                      onClick={delet_item}
+                      type="submite"
+                      placeholder="Deletar"
+                    ></input>
+                    <input
+                      className="w-100px bg-zinc-400 text-black cursor-pointer"
+                      type="submite"
+                      onClick={() => delet_item(prod)}
+                      placeholder="Cancelar"
+                    ></input>
+                    <div>{prod.id}</div>
+                  </Modal>
                   <div className="flex w-[40%] justify-between items-center pl-5">
                     <input
                       type="checkbox"
-                      onClick={(e) => check_prod(e, prod)}
+                      onClick={() => {
+                        check_prod(prod);
+                      }}
                       className="w-[1.2rem] h-[1.2rem] cursor-pointer"
                     />
                     <div className="flex ml-2 gap-3">
@@ -108,7 +126,7 @@ const Cart = () => {
                   <img
                     src={TrashBin}
                     className="w-[30px] h-[35px] cursor-pointer mr-4"
-                    onClick={delet_item}
+                    onClick={handleModal}
                   />
                 </div>
               ))
@@ -145,12 +163,6 @@ const Cart = () => {
             </button>
           </div>
         </div>
-              <Modal isOpen={openmodal} setCloseModal={handleCloseModal}>
-                <h2>tem certeza?</h2>
-                <div className="w-[100px] h-[100px] bg-amber-950 ">
-
-                </div>
-              </Modal>
       </section>
 
       <footer className="mt-8">
