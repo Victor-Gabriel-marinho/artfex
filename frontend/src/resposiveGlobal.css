@@ -4,7 +4,9 @@
 
 /* CELULAR - AUTH */
 @media (max-width: 600px) {
-
+    nav{
+        width: 100%;
+    }
     /* REGISTRO - LOGIN E CADASTRO */
     .wrapper-auth {
         display: flex;

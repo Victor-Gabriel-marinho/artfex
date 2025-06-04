@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import styles from "../tailwind/output.css";
 import CartImage from "../../assets/images/carrinho-de-compras.png";
 import Footer from "../../components/Footer";
 import { useContext } from "react";
 import { UserContext } from "../../context";
+import styles from "../tailwind/output.css";
 
 const Home = () => {
   const auth = useContext(UserContext);
@@ -11,29 +11,21 @@ const Home = () => {
 
   return (
     <div>
-      <header className="bg-[url('./images/fundo-header.png')] bg-fixed bg-no-repeat bg-bottom h-130 pt-5 font-poppins relative">
-        <nav className="bg-[#082621] m-auto w-[90%] flex items-center text-white rounded-[20px] p-[6px] border-1 ">
-          <ul className="flex justify-between items-center w-55 m-auto ml-110">
-            <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer">
-              {" "}
-              <Link to="/about"> </Link>
-            </li>
-            <li className="underline decoration-[#F2994B] underline-offset-[3px]">
+      <header className="bg-[url('./images/fundo-header.png')] bg-fixed bg-no-repeat bg-bottom h-130 pt-5 font-poppins">
+        <nav className="bg-[#082621] m-auto w-[90%] flex text-white rounded-[20px] p-[6px] border-1 relative">
+          <ul className="flex justify-between w-[115px] m-auto">
+            <li className="text-center underline decoration-[#F2994B] decoration-2 underline-offset-[5px]">
               Home
             </li>
-            <li className="relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer">
+            <li className=" relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer after:underline-offset-[5px]">
               {" "}
               <Link to="/catalog"> Catálogo </Link>
             </li>
           </ul>
-          <ul className="w-[230px] flex justify-around items-center">
-            <a
-              href="#"
-              className="text-black bg-[url('./images/carrinho-de-compras.png')]"
-            ></a>
+          <ul>
             {!user.user ? (        
-              <div className="flex flex-row justify-between items-center w-[200px]">
-                <li className="w-[65px] text-center border-2 bg-none text-white pr-[8px] pl-[8px] rounded-xl">
+              <div className=" flex justify-between items-center w-[190px] h-full">
+                <li className="w-[65px] text-center border-2 bg-none text-white pr-[8px] pl-[8px] rounded-xl ">
                   {" "}
                   <Link to="/login"> Login </Link>
                 </li>
@@ -85,7 +77,7 @@ const Home = () => {
           <p className="mt-[30px] text-2xl text-[#2F4B3C]">
             participe das nossas{" "}
             <a
-              href="#"
+              href=""
               className="bg-[#F2994B] text-white pl-[5px] pr-[5px] rounded-xl "
             >
               Redes Sociais
