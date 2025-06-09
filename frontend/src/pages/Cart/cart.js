@@ -17,6 +17,7 @@ const Cart = () => {
   const [valortotal, setvalortotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [openmodal, setopenmodal] = useState(false);
+  const [abrir, setAbrir] = useState(false)
 
   useEffect(() => {
     const id = user.user.id;
@@ -63,7 +64,12 @@ const Cart = () => {
 
   const handleModal = () => {
     setopenmodal(!openmodal);
+    setAbrir(false)
   };
+
+  const abrirmodal = () => {
+    setAbrir(true)
+  }
 
   return (
     <div className="mt-4">
@@ -103,8 +109,8 @@ const Cart = () => {
                   <div className="flex w-[40%] justify-between items-center pl-5">
                     <input
                       type="checkbox"
-                      onClick={() => {
-                        check_prod(prod);
+                      onClick={(e) => {
+                        check_prod(e, prod);
                       }}
                       className="w-[1.2rem] h-[1.2rem] cursor-pointer"
                     />
@@ -158,9 +164,25 @@ const Cart = () => {
               <span className="font-bold"> R$ {valortotal},00</span>
             </div>
 
-            <button className="bg-[#082621] p-2 mb-3 w-full rounded-full text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+            <button className="bg-[#082621] p-2 mb-3 w-full rounded-full text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity"
+              onClick={abrirmodal}
+            >
               Comprar agora
             </button>
+            <Modal isOpen={abrir} setCloseModal={handleModal}>
+                    <h2>tem certeza?</h2>
+                    <input
+                      className="w-100px bg-zinc-400 text-black cursor-pointer"
+                      onClick={delet_item}
+                      type="submite"
+                      placeholder="Deletar"
+                    ></input>
+                    <input
+                      className="w-100px bg-zinc-400 text-black cursor-pointer"
+                      type="submite"
+                      placeholder="Cancelar"
+                    ></input>
+                  </Modal>
           </div>
         </div>
       </section>
