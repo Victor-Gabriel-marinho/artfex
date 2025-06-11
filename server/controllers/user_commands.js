@@ -91,7 +91,7 @@ export const login_user = async (req, res) => {
   try {
       const { data, error } = await supabase.auth.signInWithPassword({
       email: user.email,
-      password: user.senha
+      password: user.senha 
 })
     if(error) throw error
 
@@ -99,6 +99,7 @@ export const login_user = async (req, res) => {
     return res.status(200).json({ message: "Login realizado com sucesso", session: data.session, user: data.user });
   } catch (error) {
     return res.status(500).json({ error: error.message });
+    
   }
 };
 

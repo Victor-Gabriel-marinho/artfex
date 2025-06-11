@@ -63,6 +63,11 @@
     font-variation-settings: var(--default-font-variation-settings, normal);
     -webkit-tap-highlight-color: transparent;
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   hr {
     height: 0;
     color: inherit;
