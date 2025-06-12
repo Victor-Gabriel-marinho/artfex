@@ -13,13 +13,17 @@ const Home = () => {
     <div>
       <header className="bg-[url('./images/fundo-header.png')] bg-fixed bg-no-repeat bg-bottom h-130 pt-5 font-poppins">
         <nav className="bg-[#082621] m-auto w-[90%] flex text-white rounded-[20px] p-[6px] border-1 relative">
-          <ul className="flex justify-between w-[115px] m-auto">
+          <ul className="flex justify-between w-[115px] m-auto gap-2">
             <li className="text-center underline decoration-[#F2994B] decoration-2 underline-offset-[5px]">
               Home
             </li>
             <li className=" relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer after:underline-offset-[5px]">
               {" "}
               <Link to="/catalog"> Catálogo </Link>
+            </li>
+            <li className=" relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer after:underline-offset-[5px]">
+              {" "}
+              <a download=""> Suporte </a>
             </li>
           </ul>
           <ul>

@@ -1,5 +1,6 @@
 //Componentes
 import { NavLink, Link } from "react-router-dom";
+import CartImage from "../assets/images/carrinho-de-compras.png"
 
 const NavBar = () => {
   const linkBase =
@@ -39,9 +40,24 @@ const NavBar = () => {
               }`
             }
           >
+
             Catálogo
           </NavLink>
         </li>
+
+        <li className="text-center bg-none text-white w-[35px] items-end">
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              `${linkBase} after:w-0 hover:after:w-full ${isActive ? "after:w-full after:bg-[#F2994B]" : "after:bg-white"
+              }`
+            }
+          >
+
+            <img src={CartImage}/>
+          </NavLink>
+        </li>
+
       </ul>
     </nav>
   );
