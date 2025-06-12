@@ -50,6 +50,24 @@
     .box-itens-pay {
         width: 100%;
     }
+
+    .img-box-items {
+        height: 100px !important;
+        width: 100px !important;
+    }
+
+    .trashBin-box-items {
+        width: 20px;
+        height: 20px;
+    }
+
+    .box-pay {
+        height: 45vh;
+    }
+
+    .footer {
+        margin-top: 20em;
+    }
 }
 
 @media screen and (orientation:landscape) and (max-width: 650px){
@@ -60,7 +78,7 @@
 }
 
 /* TABLET - AUTH */
-@media (max-width: 835px) {
+@media (max-width: 870px) {
 
     .wrapper-auth {
         display: flex;
@@ -92,4 +110,32 @@
         position: relative;
     }
 
+     .container-cart {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box-itens-cart,
+    .box-itens-pay {
+        width: 100%;
+    }
+
+    .box-items {
+        width: 150px
+    }
+
+    .img-box-items {
+        height: 200px;
+        width: 200px
+    }
+
+    .box-pay {
+        height: 45vh;
+    }
+
+    .footer {
+        margin-top: 30em;
+    }
 }
