@@ -1,10 +1,37 @@
 .logo {
     display: none;
 }
-
+@media screen and (max-width:800px) {
+    div#container-carrossel{
+        width: 100%;
+    }
+}
 /* CELULAR - AUTH */
 @media (max-width: 600px) {
     nav{
+        width: 100%;
+    }
+        /* tamanho dos títulos */
+    h2{
+        font-size: 2em;
+    }
+    nav{
+        width: 100%;
+    }
+    #section-img{
+        display: none;
+    }
+    /* seção de itens do Home */
+    section > ul{
+        flex-flow: column nowrap;
+        height: 150px;
+    }
+    section > ul > li div#icone1 {
+        left: -70px;
+    }
+    section > ul > li div#icone2 {
+        left: -50px;}
+    div.box{
         width: 100%;
     }
     /* REGISTRO - LOGIN E CADASTRO */
