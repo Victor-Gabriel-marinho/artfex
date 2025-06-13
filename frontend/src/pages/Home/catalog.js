@@ -12,7 +12,7 @@ const Catalog = () => {
     <div id="containerCatalog">
       <header className="h-130 pt-1 bg-[url('./images/img_bg_catalog.png')] bg-cover bg-no-repeat w-full">
         <NavBar />
-        <h1 className="font-[MuseoModerno] text-7xl text-center mt-[0.8em] text-white">
+        <h1 className="font-[MuseoModerno] text-7xl text-center mt-[0.8em] text-white title-catalog">
           {" "}
           CATÁLOGO{" "}
         </h1>

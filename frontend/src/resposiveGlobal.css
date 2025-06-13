@@ -95,6 +95,66 @@
     .footer {
         margin-top: 20em;
     }
+
+    /* CATALOGO */
+
+    .title-catalog {
+        font-size: 45pt;
+    }
+
+    .image-item-catalog {
+        width: 50%;
+        height: 60% !important;
+        margin-bottom: .5rem; 
+    }
+
+    .description-catalog {
+        width: 80%;
+    }
+
+    .box-catalog {
+        font-size: 9pt !important;
+        width: 100%;
+    }
+
+    .box-items-catalog {
+        width: 40vw;
+        height: 30vh !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & p {
+            width: 80%;
+        }
+    }
+
+    .item-search {
+        left: 40px !important;
+    }
+
+    .input-search {
+        margin-left: 20px !important;
+    }
+
+    .modal-catalog {
+        width: 90%;
+        height: auto;
+        padding: 1.2em;
+    }
+
+    & img.teste {
+        width: 150px;
+        height: 150px;
+    }
+
+    .box-modal-catalog {
+        width: 60%;
+        font-size: 12pt;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media screen and (orientation:landscape) and (max-width: 650px){
@@ -164,5 +224,41 @@
 
     .footer {
         margin-top: 30em;
+    }
+
+    /* TABLET - CATALOG */
+    .image-item-catalog {
+        width: 80%;
+        height: 80%;
+    }
+
+    .description-catalog {
+        width: 80%;
+    }
+
+    .box-catalog {
+        font-size: 12pt;
+        width: 100%;
+    }
+
+    .box-items-catalog {
+        height: 30vh;
+        width: 40vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & p {
+            width: 80%;
+        }
+    }
+
+    .item-search {
+        left: 95px;
+    }
+
+    .input-search {
+        margin-left: 80px;
     }
 }
