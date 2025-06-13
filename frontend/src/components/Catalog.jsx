@@ -4,8 +4,9 @@ import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../context";
 import { AiOutlineLoading } from "react-icons/ai";
+import "../resposiveGlobal.css";
 
-export default function CatalogComponent() {
+export default function CatalogComponent(className="") {
   const [produtos, setprodutos] = useState([]);
   const [modalproduto, setModalProduto] = useState([]);
   const [seller, setseller] = useState([]);
@@ -92,43 +93,43 @@ export default function CatalogComponent() {
       (
         <section className="bg-white w-full max-w-[1300px] m-auto rounded-xl mt-[-250px] p-4 shadow-2xl">
         <form className="relative">
-          <div className="bg-[url('./images/lupa.png')] bg-cover w-[20px] h-[20px] absolute left-40 top-6.5"></div>
+          <div className="bg-[url('./images/lupa.png')] bg-cover w-[20px] h-[20px] absolute left-40 top-6.5 item-search"></div>
           <input
-            className="bg-[#567] rounded-3xl ml-[9em] mt-[1em] mb-[1.5em] p-2 outline-none placeholder-white text-center text-white"
+            className="bg-[#567] rounded-3xl ml-[9em] mt-[1em] mb-[1.5em] p-2 outline-none placeholder-white text-center text-white input-search"
             type="text"
             placeholder="Pesquisar item"
           />
         </form>
 
-        <div className="flex flex-wrap gap-10 justify-center cursor-pointer">
+        <div className="flex flex-wrap gap-10 justify-center cursor-pointer box-catalog">
           {produtos.map((produto) => (
             <div
               onClick={() => {
                 get_modal(produto);
               }}
               key={produto.id}
-              className="w-[300px] h-[350px]"
+              className="w-[300px] h-[350px] box-items-catalog"
             >
               <img
                 src={produto.url}
-                className=" w-full h-full max-h-[300px] bg-cover rounded-xl"
+                className=" w-full h-full max-h-[300px] bg-cover rounded-xl image-item-catalog"
               />
-              <div className="flex justify-between pl-2 pr-2 pt-1">
-                <span className="text-gray-500 font">Categoria</span>
+              <div className="flex justify-between pl-2 pr-2 pt-1 description-catalog">
+                <span className="text-gray-500 font ">Categoria</span>
                 <span className="text-[#F2994B] font-bold font-[Poppins]">
                   R${produto.preco},00
                 </span>
               </div>
-              <p className="font-bold font-[Poppins] pl-2">{produto.nome}</p>
+              <p className="font-bold font-[Poppins] pl-2 name-item">{produto.nome}</p>
             </div>
           ))}
         </div>
 
-        <Modal isOpen={openModal} setCloseModal={handleCloseModal}>
-          <div className="flex justify-center items-center">
+        <Modal isOpen={openModal} setCloseModal={handleCloseModal} className={`${className} modal-catalog`}>
+          <div className="flex justify-center items-center box-modal-catalog">
             {/* imagem */}
             <img
-              className="w-[270px] h-[290px] bg-cover rounded-xl mr-[2em]"
+              className="w-[270px] h-[290px] bg-cover rounded-xl mr-[2em] teste"
               src={modalproduto.url}
               alt=""
             />
@@ -146,7 +147,7 @@ export default function CatalogComponent() {
                 <div className="bg-gray-300 w-[30px] h-[30px] rounded-full"></div>
                 <p className="font-[Poppins] pl-2 font-normal">{seller.nome}</p>
               </div>
-              <p className="text-gray-500 font">{modalproduto.descricao}</p>
+              <p className="text-gray-500 font w-[350px] m-auto">{modalproduto.descricao}</p>
 
               <div className="flex justify-between gap-2 w-[330px]">
                 {produto_adicionado ? (
