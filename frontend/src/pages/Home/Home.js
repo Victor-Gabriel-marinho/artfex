@@ -72,16 +72,17 @@ const Home = () => {
           </li>
         </ul>
       </section>
-      <section className="box bg-[#F2994B] max-w-[800px] m-auto mt-[60px] rounded-xl flex justify-center">
-            <div className=" w-1/2 text-white p-3">
-              <h2 className="text-2xl text-center">Seja um artesão parceiro</h2>
-              <p className="text-xl text-justify mt-13">Valorize seu talento e aumente suas vendas- seja um artesão parceiro da nossa loja de artesanato</p>
-              <div className="box bg-[#2F4B3C] p-[10px] text-center w-full rounded-xl mt-[15px]">
-                Junte-se a nós e faça parte da nossa rede de artesãos
+        <section className="box bg-[#F2994B] max-w-[800px] m-auto mt-[60px] rounded-xl flex justify-center">
+              <div className=" w-1/2 text-white p-3">
+                <h2 className="text-2xl text-center">Seja um artesão parceiro</h2>
+                <p className="text-xl text-justify mt-13">Valorize seu talento e aumente suas vendas- seja um artesão parceiro da nossa loja de artesanato</p>
+                <div className="box bg-[#2F4B3C] p-[10px] text-center w-full rounded-xl mt-[15px]">
+                  Junte-se a nós e faça parte da nossa rede de artesãos
+                </div>
               </div>
-            </div>
-            <div className="imagem w-1/2 h-[300px] bg-[url(./images/section_mulher.png)] bg-cover rounded-tr-xl rounded-br-xl" id="section-img"></div>
-      </section>
+              <div className="imagem w-1/2 h-[300px] bg-[url(./images/section_mulher.png)] bg-cover rounded-tr-xl rounded-br-xl" id="section-img"></div>
+        </section>
+
         <h2 className="text-[#2F4B3C] text-5xl mt-30 text-center">
         Depoimentos de nossos artesãos
       </h2>
