@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 
-// Rota para buscar dados da tabela "usuarios"
+// Controller para buscar dados da tabela "usuarios"
 export const pegar_dados = async (_, res) => {
     const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
@@ -15,7 +15,7 @@ export const pegar_dados = async (_, res) => {
     }
 };
 
-// Rota para criar um novo usuário
+// Controller para criar um novo usuário
 export const criar_usuario = async (req, res) => {
   const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
@@ -64,7 +64,7 @@ export const criar_usuario = async (req, res) => {
   }
 };
 
-// Rota para deletar um usuário
+// Controller para deletar um usuário
 
 export const deletar_usuario = async(req, res) => {
   const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);

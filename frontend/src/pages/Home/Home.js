@@ -4,6 +4,7 @@ import CartImage from "../../assets/images/carrinho-de-compras.png";
 import Footer from "../../components/Footer";
 import { useContext } from "react";
 import { UserContext } from "../../context";
+import guia from "../../assets/guia_do_usuario.pdf"
 import "../tailwind/output.css";
 import Carousel from "../../components/Carousel";
 
@@ -25,7 +26,7 @@ const Home = () => {
             </li>
             <li className=" relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full cursor-pointer after:underline-offset-[5px]">
               {" "}
-              <a href="./guia_usuario.pdf">Ajuda</a>   
+              <a href={guia} target="blank">Ajuda</a>   
             </li>
           </ul>
           <ul>

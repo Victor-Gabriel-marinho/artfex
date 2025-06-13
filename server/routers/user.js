@@ -1,13 +1,17 @@
 import express from "express"
-import { criar_usuario, deletar_usuario, login_user } from "../controllers/user_commands.js"
 
-// import { criar_usu, pegar_usus } from "../controllers/user_commands"
+// Importando controllers
+import { criar_usuario, deletar_usuario, login_user } from "../controllers/user_commands.js"
 
 const router = express.Router()
 
-
+// Rota para cadastrar um usuário
 router.post("/criar", criar_usuario)
+
+// Rota para logar
 router.post("/login", login_user)
+
+// Rota para deletar um usuário
 router.delete("/deletar", deletar_usuario)
 
 export default router

@@ -11,13 +11,13 @@ import axios from "axios";
 import "../../resposiveGlobal.css";
 
 const Cart = () => {
+
   const { user } = useContext(UserContext);
   const [cart_prod, setCartProd] = useState([]);
   const [desiredProduct, setdesireProduct] = useState([]);
   const [valortotal, setvalortotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [openmodal, setopenmodal] = useState(false);
-  const [abrir, setAbrir] = useState(false);
   const [buy_modal, setBuymodal] = useState(false)
 
   useEffect(() => {
@@ -27,7 +27,6 @@ const Cart = () => {
       .get("http://127.0.0.1:5000/produtos/get_cart/" + id)
       .then((response) => {
         setCartProd(response.data);
-        console.log(response.data)
         setLoading(false);
       })
       .catch((error) => {
@@ -69,14 +68,33 @@ const Cart = () => {
   };
 
   const open_buy_modal = () => {
-    setBuymodal(!buy_modal)
+    setBuymodal(true)
 
+    const description = "pagamento"
+    const payer_email = user.user.email
+
+    const transaction_amount = valortotal
     
+    const datas = {
+        transaction_amount,
+        description,
+        payer_email
+    }
+    
+    axios
+    .post("http://127.0.0.1:5000/payment/pagamento", datas)
+    .then((response) => 
+      console.log(response.data)
+    )
+    .cathc((error) => 
+        console.error("erro ao fazer requisição", error)
+    )
+
   }
 
-  const abrirmodal = () => {
-    setAbrir(true);
-  };
+  const close_buy_modal = () => {
+   setBuymodal(false)
+  }
 
   return (
     <div className="mt-4">
@@ -193,8 +211,7 @@ const Cart = () => {
             >
               Comprar agora
             </button>
-            <Modal isOpen={buy_modal} setCloseModal={open_buy_modal}>
-
+            <Modal isOpen={buy_modal} setCloseModal={close_buy_modal}>
             </Modal>
           </div>
         </div>

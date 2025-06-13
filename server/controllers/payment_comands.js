@@ -1,5 +1,7 @@
 import{MercadoPagoConfig, Payment} from 'mercadopago';
 
+
+// Criar pagamento
 export const pagamento = async (req, res) => {
     const client = new MercadoPagoConfig({
         accessToken: process.env.ACCESS_TOKEN,

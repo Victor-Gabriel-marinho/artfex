@@ -1,8 +1,11 @@
 import express from 'express';
-import { pagamento } from '../controllers/payment_comands';
 
-const router = express.Router();
+// importando controllers
+import { pagamento } from '../controllers/payment_comands.js';
 
-router.post('/pagamento', pagamento);
+const payment_router = express.Router();
 
-export default router;
+//rota para criar um pagamento
+payment_router.post('/pagamento', pagamento);
+
+export default payment_router;

@@ -1,6 +1,7 @@
+// Importando Supabase
 import { supabase } from "../routers/client.js";
 
-//controller para pegar imagens
+// Controller para pegar os produtos
 export const get_produtos = async (_,res) => {
 
     const {data,error} = await supabase.from('produtos').select('*')
@@ -12,6 +13,7 @@ export const get_produtos = async (_,res) => {
     res.json(data)
 };
 
+// Controller para pegar o vendendor
 export const get_ususer = async (req,res) => {
     const id = req.params.id;
     
@@ -24,6 +26,7 @@ export const get_ususer = async (req,res) => {
     res.json(data)
 };
 
+//  Controller para adicionar um item no carrinho
 export const add_cart = async (req, res) => {
     const user_id = req.params.id_user;
     const product_id = req.params.id_product;
@@ -41,6 +44,7 @@ export const add_cart = async (req, res) => {
     
 };
 
+// Controller para pegar o carrinho do usuário
 export const get_cart = async (req, res) => {
     const user_id = req.params.id_user;
 
