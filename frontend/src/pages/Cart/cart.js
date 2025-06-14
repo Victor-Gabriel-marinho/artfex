@@ -14,6 +14,7 @@ const Cart = () => {
 
   const { user } = useContext(UserContext);
   const [cart_prod, setCartProd] = useState([]);
+  const [prod_id, setProd_id] = useState(0)
   const [desiredProduct, setdesireProduct] = useState([]);
   const [valortotal, setvalortotal] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,7 @@ const Cart = () => {
         console.log("erro ao fazer requisição:", error);
         setLoading(false);
       });
-  }, []);
+  }, [openmodal]);
 
   useEffect(() => {
     somar_valores();
@@ -59,42 +60,60 @@ const Cart = () => {
     somar_valores();
   };
 
-  const delet_item = (prod) => {
-    console.log(prod);
+  const delet_item = (e,prod) => {
+    const user_id = user.user.id
+    const id_prod = prod_id
+
+    axios .delete(`http://127.0.0.1:5000/produtos/delete/${user_id}/${id_prod}`)
+    .then(() =>{
+      console.log("item deletado com sucesso")
+      setCartProd(prevcartprod => prevcartprod.filter(item => item.id !== id_prod))
+      setopenmodal(!openmodal)
+    }
+    )
+    .catch((error) => {
+      console.log("erro ao fazer requisição", error)
+    })
   };
 
   const handleModal = () => {
     setopenmodal(!openmodal);
   };
 
+  const open_Modal = (e)=> {
+    setopenmodal(true)
+    setProd_id(e.target.id)
+  }
+
   const open_buy_modal = () => {
     setBuymodal(true)
 
-    const description = "pagamento"
-    const payer_email = user.user.email
+    // const description = "pagamento"
+    // const payer_email = user.user.email
 
-    const transaction_amount = valortotal
+    // const transaction_amount = valortotal
     
-    const datas = {
-        transaction_amount,
-        description,
-        payer_email
-    }
+    // const datas = {
+    //     transaction_amount,
+    //     description,
+    //     payer_email
+    // }
     
-    axios
-    .post("http://127.0.0.1:5000/payment/pagamento", datas)
-    .then((response) => 
-      console.log(response.data)
-    )
-    .cathc((error) => 
-        console.error("erro ao fazer requisição", error)
-    )
+    // axios
+    // .post("http://127.0.0.1:5000/payment/pagamento", datas)
+    // .then((response) => 
+    //   console.log(response.data)
+    // )
+    // .cathc((error) => 
+    //     console.error("erro ao fazer requisição", error)
+    // )
 
   }
 
   const close_buy_modal = () => {
    setBuymodal(false)
   }
+
 
   return (
     <div className="mt-4">
@@ -122,13 +141,12 @@ const Cart = () => {
                       setCloseModal={handleModal}
                     >
                       <h2 className="font-medium text-xl">
-                        {" "}
-                        Tem certeza que deseja deletar?{" "}
+                        Tem certeza que deseja deletar?
                       </h2>
                       <div className="h-[5rem] flex items-center justify-center gap-2">
                         <input
                           className="w-[100px] h-[50px] bg-green-600 text-black cursor-pointer"
-                          onClick={delet_item}
+                          onClick={(e) => delet_item(e,prod)}
                           value="Sim"
                           type="submit"
                         ></input>
@@ -167,8 +185,9 @@ const Cart = () => {
                     </div>
                     <img
                       src={TrashBin}
+                      id = {prod.id}
                       className="w-[30px] h-[35px] cursor-pointer mr-4 trashBin-box-items"
-                      onClick={handleModal}
+                      onClick={(e)=>open_Modal(e)}
                     />
                   </div>
                 ))}

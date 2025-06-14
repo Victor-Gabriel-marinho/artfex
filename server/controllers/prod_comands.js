@@ -14,7 +14,7 @@ export const get_produtos = async (_,res) => {
 };
 
 // Controller para pegar o vendendor
-export const get_ususer = async (req,res) => {
+export const get_user = async (req,res) => {
     const id = req.params.id;
     
     const {data,error} = await supabase.from('usuarios').select('*').eq('id', id).single()
@@ -48,7 +48,6 @@ export const add_cart = async (req, res) => {
 export const get_cart = async (req, res) => {
     const user_id = req.params.id_user;
 
-
     const {data, error} = await supabase
         .from('carrinho')
         .select('*')
@@ -70,3 +69,17 @@ export const get_cart = async (req, res) => {
 
     res.json(prodcts);    
 };
+
+// Controller para deletar um item
+export const delet_item = async (req,res) => {
+    const user_id = req.params.user_id
+    const product_id = req.params.product_id
+
+    const {data, error} = await supabase .from('carrinho').delete().eq('user_id', user_id).eq("product_id", product_id)
+
+    if (error) {
+        console.log("erro ao deletar item", error)
+    }
+
+    res.json(data)
+}
