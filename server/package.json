@@ -7,7 +7,7 @@
     "node": "18"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node --experimental-modules index.js",
     "dev": "nodemon index.js"
   },
   "keywords": [],
