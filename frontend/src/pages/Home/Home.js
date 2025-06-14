@@ -44,7 +44,7 @@ const Home = () => {
             ) : (
               <li className="text-center bg-none text-white w-[35px]">
                 {" "}
-                <Link to="/cart"> <img src={CartImage} /> </Link>
+                <Link to="/cart"> <img src={CartImage} alt="" /> </Link>
               </li>
             )}
           </ul>

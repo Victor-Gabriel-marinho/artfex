@@ -1,5 +1,5 @@
 //Componentes
-import { NavLink, Link } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import CartImage from "../assets/images/carrinho-de-compras.png"
 
 const NavBar = () => {
@@ -54,7 +54,7 @@ const NavBar = () => {
             }
           >
 
-            <img src={CartImage}/>
+            <img src={CartImage} alt=""/>
           </NavLink>
         </li>
 

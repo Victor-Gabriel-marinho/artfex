@@ -9,7 +9,6 @@ import { Userprovider } from "./context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./pages/Cart/cart";
 
-import Footer from "./components/Footer";
 // Pages
 function App() {
   return (

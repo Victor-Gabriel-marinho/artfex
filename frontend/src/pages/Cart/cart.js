@@ -1,7 +1,7 @@
 import Footer from "../../components/Footer";
 import CartImage from "../../assets/images/carrinho-de-compras.png";
 import TrashBin from "../../assets/images/trashBin.png";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import { useContext } from "react";
 import Modal from "../../components/Modal";
@@ -19,11 +19,13 @@ const Cart = () => {
   const [valortotal, setvalortotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [openmodal, setopenmodal] = useState(false);
+  const [deleted, setDeleted] = useState(false)
   const [buy_modal, setBuymodal] = useState(false)
 
   useEffect(() => {
     const id = user.user.id;
     setLoading(true);
+
     axios
       .get("http://127.0.0.1:5000/produtos/get_cart/" + id)
       .then((response) => {
@@ -34,18 +36,18 @@ const Cart = () => {
         console.log("erro ao fazer requisição:", error);
         setLoading(false);
       });
-  }, [openmodal]);
+  }, [deleted, user?.user?.id]);
 
-  useEffect(() => {
-    somar_valores();
-  }, [desiredProduct]);
-
-  const somar_valores = () => {
+  const somar_valores = useCallback(() => {
     const valores = desiredProduct.map((prod) => prod.preco);
     setvalortotal(
       valores.reduce((acumulado, valorAtual) => acumulado + valorAtual, 0)
     );
-  };
+  }, [desiredProduct]);
+
+  useEffect(() => {
+    somar_valores();
+  }, [desiredProduct,somar_valores]);
 
   const check_prod = (e, prod) => {
     const checkbox = e.target.checked;
@@ -63,12 +65,14 @@ const Cart = () => {
   const delet_item = (e,prod) => {
     const user_id = user.user.id
     const id_prod = prod_id
+    setDeleted(true)
 
-    axios .delete(`http://127.0.0.1:5000/produtos/delete/${user_id}/${id_prod}`)
+    axios.delete(`http://127.0.0.1:5000/produtos/delete/${user_id}/${id_prod}`)
     .then(() =>{
       console.log("item deletado com sucesso")
       setCartProd(prevcartprod => prevcartprod.filter(item => item.id !== id_prod))
       setopenmodal(!openmodal)
+      setDeleted(false)
     }
     )
     .catch((error) => {
@@ -119,7 +123,7 @@ const Cart = () => {
     <div className="mt-4">
       <div className="bg-[#F2994B] w-[90%] h-15 rounded-full m-auto pl-10 flex">
         <div className="flex gap-2 items-center ">
-          <img src={CartImage} className="w-[35px] " />
+          <img src={CartImage} alt="" className="w-[35px] " />
           <h2 className="text-white font-light text-3xl">Carrinho</h2>
         </div>
       </div>
@@ -171,6 +175,7 @@ const Cart = () => {
                       <div className="flex ml-2 gap-3">
                         <img
                           src={prod.url}
+                          alt=""
                           className="w-[170px] h-[170px] rounded-xl img-box-items shrink-0"
                         />
                         <div className="min-w-0">
@@ -185,6 +190,7 @@ const Cart = () => {
                     </div>
                     <img
                       src={TrashBin}
+                      alt=""
                       id = {prod.id}
                       className="w-[30px] h-[35px] cursor-pointer mr-4 trashBin-box-items"
                       onClick={(e)=>open_Modal(e)}

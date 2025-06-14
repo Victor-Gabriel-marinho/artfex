@@ -27,8 +27,10 @@ export default function CatalogComponent(className="") {
 
   useEffect(() => {
     setLoading(true)
+    const user_id = user.user.user.id
+
     axios
-      .get("http://127.0.0.1:5000/produtos/produtos")
+      .get("http://127.0.0.1:5000/produtos/get_produtos/"+user_id)
       .then((Response) => {
         setprodutos(Response.data);
         setLoading(false)
@@ -38,7 +40,7 @@ export default function CatalogComponent(className="") {
         setErro(true)
         console.log("erro ao fazer requisição");
       });
-  }, []);
+  }, [user?.user?.user?.id]);
 
   const get_modal = (produto) => {
     setOpenModal(true);
@@ -59,6 +61,8 @@ export default function CatalogComponent(className="") {
 
   const handleCloseModal = () => {
     setOpenModal(false);
+    setProdutoAdicionado(false)
+    setErro(false)
   };
 
   const add_to_cart = () => {
@@ -113,6 +117,7 @@ export default function CatalogComponent(className="") {
               <img
                 src={produto.url}
                 className=" w-full h-full max-h-[300px] bg-cover rounded-xl image-item-catalog"
+                alt=""
               />
               <div className="flex justify-between pl-2 pr-2 pt-1 description-catalog">
                 <span className="text-gray-500 font ">Categoria</span>
@@ -151,9 +156,19 @@ export default function CatalogComponent(className="") {
 
               <div className="flex justify-between gap-2 w-[330px]">
                 {produto_adicionado ? (
-                  <p>Produto adicionado com sucesso.</p>
+                  <div>
+                    <p className="bg-[#F2994B] rounded-2xl text-l text-white text-center cursor-pointer"
+                       onClick={handleCloseModal}
+                    >
+                      Produto adicionado ao seu carrinho.
+                    </p>
+                  </div>
                 ) : erro ? (
-                    <p>Produto já adicionado ao carrinho</p>
+                    <p className="bg-red-500 text-white rounded-2xl text-l text-center p-1 cursor-pointer"
+                       onClick={handleCloseModal} 
+                    >
+                      Produto já adicionado ao carrinho.
+                    </p>
                 ) : (
                   <button
                     className="bg-[#082621] p-1 w-full rounded-2xl text-white cursor-pointer opacity-80 hover:opacity-100 transition-opacity"

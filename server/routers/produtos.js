@@ -5,7 +5,7 @@ import { get_produtos,get_user, add_cart, get_cart, delet_item } from "../contro
 const router = express.Router()
 
 // rota para pegar produtos
-router.get("/produtos", get_produtos)
+router.get("/get_produtos/:id", get_produtos)
 
 // rota para pegar usuarios dos produtos
 router.get("/get_user/:id", get_user)

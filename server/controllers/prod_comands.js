@@ -2,9 +2,11 @@
 import { supabase } from "../routers/client.js";
 
 // Controller para pegar os produtos
-export const get_produtos = async (_,res) => {
+export const get_produtos = async (req,res) => {
+    
+    const user_id = req.params.id
 
-    const {data,error} = await supabase.from('produtos').select('*')
+    const {data,error} = await supabase.from('produtos').select('*').neq("id_usuario", user_id)
 
     if (error){
         return res.status(500).json({error: error.mensage})

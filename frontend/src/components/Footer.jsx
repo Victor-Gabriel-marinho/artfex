@@ -12,12 +12,12 @@ const Footer = () => {
 
           <li className="flex gap-5 text-white">
             <div className="bg-[url('./images/email.png')] bg-cover w-[20px] h-[20px] cursor-pointer mb-[0.5em]"></div>
-            <a href="#" target="blank"> Email </a>
+            <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSDbSLLFdVQTrTRnBdKsXcnMPlJqgTZGwlTFwkbxzPZKzwKvFgNvhzMLTKcZxSwDSKWgLVKg">artfex.empresa@gmail.com</a>
           </li>
 
           <li className="flex gap-5 text-white">
             <div className="bg-[url('./images/telefone.png')] bg-cover w-[20px] h-[20px] cursor-pointer mb-[0.5em]"></div>
-            <a href="#" target="blank"> Telefone </a>
+            <p>+55 85 9789-3130</p>
           </li>
 
         </ul>

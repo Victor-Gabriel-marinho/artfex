@@ -72,7 +72,7 @@ const Register = () => {
         <section className="flex-1">
           <div className="p-[5rem] register-form">
             <div className="flex justify-center items-center flex-col box-input">
-              <img src={Logo} className="logo" />
+              <img src={Logo} alt="" className="logo" />
               <h2 className="font-bold text-[#0b3c34] text-4xl mb-[1.5em]">Cadastre-se</h2>
               <form
                 className="flex flex-col justify-center mb-[1.5em] pb-[1.5em] border-b border-[#363636] w-[80%]"

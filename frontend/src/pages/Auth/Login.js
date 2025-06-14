@@ -10,7 +10,7 @@
   const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState(""); 
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -29,6 +29,7 @@
         navigate('/');
       }catch(error){
         console.error(error.response)
+        setError(true)
       }
     };
 
@@ -83,7 +84,7 @@
           <section className="flex-1">
             <div className="p-[5rem] register-form">
               <div className="flex justify-center items-center flex-col box-input">
-                <img src={Logo} className="logo" />
+                <img src={Logo} alt="" className="logo" />
                 <h2 className="font-bold text-[#0b3c34] text-4xl mb-[1.2em]">Faça seu login</h2>
                 <form
                   className="flex flex-col justify-center mb-[1.5em] pb-[1.5em] border-b border-[#363636] w-[80%]"
