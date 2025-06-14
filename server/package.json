@@ -3,17 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
-  "engine": {
-    "node": "18"
+  "engines": {
+    "node": ">=18.0.0"
   },
   "scripts": {
     "start": "node --experimental-modules index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon --experimental-modules index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
     "axios": "^1.8.4",
