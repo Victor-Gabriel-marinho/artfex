@@ -21,13 +21,14 @@ const Cart = () => {
   const [openmodal, setopenmodal] = useState(false);
   const [deleted, setDeleted] = useState(false)
   const [buy_modal, setBuymodal] = useState(false)
+  const api_url = process.env.REACT_APP_API_URL
 
   useEffect(() => {
     const id = user.user.id;
     setLoading(true);
 
     axios
-      .get("http://127.0.0.1:5000/produtos/get_cart/" + id)
+      .get(`${api_url}/produtos/get_cart/` + id)
       .then((response) => {
         setCartProd(response.data);
         setLoading(false);
@@ -36,7 +37,7 @@ const Cart = () => {
         console.log("erro ao fazer requisição:", error);
         setLoading(false);
       });
-  }, [deleted, user?.user?.id]);
+  }, [deleted, user?.user?.id, api_url]);
 
   const somar_valores = useCallback(() => {
     const valores = desiredProduct.map((prod) => prod.preco);
@@ -67,7 +68,7 @@ const Cart = () => {
     const id_prod = prod_id
     setDeleted(true)
 
-    axios.delete(`http://127.0.0.1:5000/produtos/delete/${user_id}/${id_prod}`)
+    axios.delete(`${api_url}/produtos/delete/${user_id}/${id_prod}`)
     .then(() =>{
       console.log("item deletado com sucesso")
       setCartProd(prevcartprod => prevcartprod.filter(item => item.id !== id_prod))

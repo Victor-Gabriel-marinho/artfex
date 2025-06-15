@@ -8,6 +8,7 @@ import guia from "../../assets/guia_do_usuario.pdf"
 import "../tailwind/output.css";
 import Carousel from "../../components/Carousel";
 
+
 const Home = () => {
   const auth = useContext(UserContext);
   const user = auth

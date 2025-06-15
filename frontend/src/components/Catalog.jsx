@@ -8,13 +8,14 @@ import "../resposiveGlobal.css";
 
 export default function CatalogComponent(className="") {
   const [produtos, setprodutos] = useState([]);
-  const [modalproduto, setModalProduto] = useState([]);
-  const [seller, setseller] = useState([]);
+  const [modalproduto, setModalProduto] = useState([null]);
+  const [seller, setseller] = useState([null]);
   const user = useContext(UserContext)
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false)
   const [erro, setErro] = useState(false)
   const [produto_adicionado, setProdutoAdicionado] = useState(false);
+  const api_url = process.env.REACT_APP_API_URL
 
   useEffect(() => {
     const body = document.body;
@@ -30,7 +31,7 @@ export default function CatalogComponent(className="") {
     const user_id = user.user.user.id
 
     axios
-      .get("http://127.0.0.1:5000/produtos/get_produtos/"+user_id)
+      .get(`${api_url}/produtos/get_produtos/`+user_id)
       .then((Response) => {
         setprodutos(Response.data);
         setLoading(false)
@@ -40,7 +41,7 @@ export default function CatalogComponent(className="") {
         setErro(true)
         console.log("erro ao fazer requisição");
       });
-  }, [user?.user?.user?.id]);
+  }, [user?.user?.user?.id, api_url]);
 
   const get_modal = (produto) => {
     setOpenModal(true);
@@ -50,7 +51,7 @@ export default function CatalogComponent(className="") {
     const id = produto.id_usuario;
 
     axios
-      .get("http://127.0.0.1:5000/produtos/get_user/" + id)
+      .get(`${api_url}/produtos/get_user/` + id)
       .then((Response) => {
         setseller(Response.data);
       })
@@ -71,7 +72,7 @@ export default function CatalogComponent(className="") {
 
     axios
       .post(
-        `http://127.0.0.1:5000/produtos/insert_product_cart/${id_product}/${id_user}`
+        `${api_url}/produtos/insert_product_cart/${id_product}/${id_user}`
       )
       .then((Response) => {
         console.log("Produto adicionado ao carrinho com sucesso", Response.data);

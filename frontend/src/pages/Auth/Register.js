@@ -20,6 +20,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const api_url = process.env.REACT_APP_API_URL
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ const Register = () => {
     if (!name || !email || !password || !cidade || !estado) {
     // envia os dados do front pro backend
     try {
-      const response = axios.post("http://127.0.0.1:5000/user/criar", user);
+      const response = axios.post(`${api_url}/user/criar`, user);
       navigate('/', { state: { user: response.data, isuser: true } });
     } catch (error) {
       console.error(

@@ -13,6 +13,7 @@
     const { setUser } = useContext(UserContext);
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const api_url = process.env.REACT_APP_API_URL
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -21,7 +22,7 @@
         password
       }
       try{
-        const response = await axios.post("http://127.0.0.1:5000/user/login", user);
+        const response = await axios.post(`${api_url}/user/login`, user);
 
         console.log(response.data)
         setUser(response.data);

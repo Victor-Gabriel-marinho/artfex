@@ -9,7 +9,13 @@ dotenv.config();
 const app = express();
 
 // Configurações
-app.use(cors());
+app.use(cors({
+   origin: [
+    'https://seu-frontend.onrender.com',
+    'http://localhost:3000'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Rotas
@@ -17,6 +23,10 @@ app.use("/user", userRoutes);
 app.use("/produtos", router);
 
 app.get('/', (req, res) => res.sendStatus(200));
+
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
 // Iniciar servidor
 const PORT = process.env.PORT || 5000;
