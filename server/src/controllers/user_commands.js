@@ -1,9 +1,7 @@
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "../routers/client";
 
 // Controller para buscar dados da tabela "usuarios"
 export const pegar_dados = async (_, res) => {
-    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-
     try {
       const { data, error } = await supabase.from("usuarios").select("*");
   
@@ -17,8 +15,6 @@ export const pegar_dados = async (_, res) => {
 
 // Controller para criar um novo usuário
 export const criar_usuario = async (req, res) => {
-  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-
   const user = {
     "nome": req.body.name,
     "email": req.body.email,
@@ -67,10 +63,8 @@ export const criar_usuario = async (req, res) => {
 // Controller para deletar um usuário
 
 export const deletar_usuario = async(req, res) => {
-  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
   const id = req.body.id
 
-  
   try{
     console.log("Tentando deletar id: ", id)
     const {data, error} = await supabase.from("usuarios").delete().eq("id", id)
@@ -83,7 +77,6 @@ export const deletar_usuario = async(req, res) => {
 }
 
 export const login_user = async (req, res) => {
-  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
   const user = {
     "email": req.body.email,
     "senha": req.body.password,
@@ -103,3 +96,11 @@ export const login_user = async (req, res) => {
   }
 };
 
+export const logout_user = async (req,res) => {
+  const {error} = await supabase.auth.signOut(req.body.acess_token)
+
+  if (error) throw error
+
+  res.status(200).json({ message: 'Logout realizado com sucesso!' });
+  
+}

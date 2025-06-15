@@ -10,8 +10,8 @@ import Carousel from "../../components/Carousel";
 
 
 const Home = () => {
-  const auth = useContext(UserContext);
-  const user = auth
+  const {user, handlelogout} = useContext(UserContext);
+  console.log(user)
 
   return (
     <div>
@@ -30,8 +30,8 @@ const Home = () => {
               <a href={guia} target="blank">Ajuda</a>   
             </li>
           </ul>
-          <ul>
-            {!user.user ? (
+          <ul className="flex items-center justify-center">
+            {!user ? (
               <div className=" flex justify-between items-center w-[190px] h-full">
                 <li className="w-[65px] text-center border-2 bg-none text-white pr-[8px] pl-[8px] rounded-xl ">
                   {" "}
@@ -43,10 +43,15 @@ const Home = () => {
                 </li>
               </div>
             ) : (
-              <li className="text-center bg-none text-white w-[35px]">
-                {" "}
-                <Link to="/cart"> <img src={CartImage} alt="" /> </Link>
-              </li>
+              <div className="w-full flex items-center">
+                <li className="text-center bg-none text-white w-[50%]">
+                  {" "}
+                  <Link to="/cart"> <img className="w-[35px]" src={CartImage} alt="" /></Link>
+                </li>
+                <li className="flex items-center justify-center">
+                  <input className="bg-red-500 flex text-white cursor-pointer text-white rounded-xl w-[50%] text-center" placeholder="Sair" type="submite" onClick={handlelogout}></input>
+                </li>
+              </div>
             )}
           </ul>
         </nav>

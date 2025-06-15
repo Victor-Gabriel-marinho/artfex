@@ -1,10 +1,13 @@
 //Componentes
 import { NavLink} from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context";
 import CartImage from "../assets/images/carrinho-de-compras.png"
 
 const NavBar = () => {
   const linkBase =
     "group relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:transition-all after:duration-300";
+    const {user} = useContext(UserContext)
 
   return (
     <nav className="bg-[#082621] m-auto w-[90%] flex justify-center text-white rounded-[20px] p-[8px] border mt-[1.5em]">
@@ -45,7 +48,7 @@ const NavBar = () => {
           </NavLink>
         </li>
 
-        <li className="text-center bg-none text-white w-[35px] items-end">
+        { user ? (<li className="text-center bg-none text-white w-[35px] items-end">
           <NavLink
             to="/cart"
             className={({ isActive }) =>
@@ -56,7 +59,7 @@ const NavBar = () => {
 
             <img src={CartImage} alt=""/>
           </NavLink>
-        </li>
+        </li>): ""}
 
       </ul>
     </nav>

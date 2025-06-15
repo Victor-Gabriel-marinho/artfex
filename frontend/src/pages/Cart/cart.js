@@ -24,7 +24,7 @@ const Cart = () => {
   const api_url = process.env.REACT_APP_API_URL
 
   useEffect(() => {
-    const id = user.user.id;
+   const id = user.user.id;
     setLoading(true);
 
     axios

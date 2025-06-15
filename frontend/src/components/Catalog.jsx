@@ -5,12 +5,14 @@ import { useContext } from "react";
 import { UserContext } from "../context";
 import { AiOutlineLoading } from "react-icons/ai";
 import "../resposiveGlobal.css";
+import { Link } from "react-router-dom";
 
 export default function CatalogComponent(className="") {
   const [produtos, setprodutos] = useState([]);
   const [modalproduto, setModalProduto] = useState([null]);
   const [seller, setseller] = useState([null]);
-  const user = useContext(UserContext)
+  const [notuser,setnotuser] = useState(false)
+  const {user} = useContext(UserContext)
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false)
   const [erro, setErro] = useState(false)
@@ -27,8 +29,9 @@ export default function CatalogComponent(className="") {
   }, [openModal]);
 
   useEffect(() => {
+    if (user) {
     setLoading(true)
-    const user_id = user.user.user.id
+    const user_id = user.user.id
 
     axios
       .get(`${api_url}/produtos/get_produtos/`+user_id)
@@ -40,7 +43,9 @@ export default function CatalogComponent(className="") {
         setLoading(false)
         setErro(true)
         console.log("erro ao fazer requisição");
-      });
+      });} else {
+        setnotuser(true)
+      }
   }, [user?.user?.user?.id, api_url]);
 
   const get_modal = (produto) => {
@@ -84,9 +89,14 @@ export default function CatalogComponent(className="") {
       });
   };
 
+
   return (
     <div>
-      {loading ? (
+      {notuser? (
+        <div className="bg-white w-full max-w-[1300px] m-auto rounded-xl mt-[-250px] p-4 shadow-2xl">
+          <p className="text-center text-xl ">Por favor, faça login para acessar o catálogo. <Link className="text-[#F2994B]" to="/login"> Clique aqui </Link></p> 
+        </div>
+      ) :  loading ? (
         (
         <div className="bg-white w-full max-w-[1300px] m-auto rounded-xl mt-[-250px] p-4 shadow-2xl">
           <div className="w-full h-full flex items-center justify-center">
