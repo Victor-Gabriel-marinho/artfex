@@ -11,7 +11,7 @@ const app = express();
 // Configurações
 app.use(cors({
    origin: [
-    'https://seu-frontend.onrender.com',
+    'https://artfex.vercel.app',
     'http://localhost:3000'
   ],
   credentials: true
