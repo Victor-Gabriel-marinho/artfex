@@ -16,8 +16,10 @@ app.use(express.json());
 app.use("/user", userRoutes);
 app.use("/produtos", router);
 
+app.get('/', (req, res) => res.sendStatus(200));
+
 // Iniciar servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on  127.0.0.1:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
