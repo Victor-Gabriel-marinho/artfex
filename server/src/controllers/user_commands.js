@@ -22,7 +22,9 @@ export const criar_usuario = async (req, res) => {
     "cidade": req.body.cidade,
     "estado": req.body.estado
   };
-
+  if (user){
+    res.json(user)
+  }
   try {
     // 1. Cadastrar no Supabase Auth
     const { data, error: signUpError } = await supabase.auth.signUp({

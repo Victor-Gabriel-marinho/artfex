@@ -25,14 +25,14 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const user = {
-      name,
-      email,
-      password,
-      cidade,
-      estado,
-      confirmPassword,
-    };
+    // const user = {
+    //   name,
+    //   email,
+    //   password,
+    //   cidade,
+    //   estado
+    // };
+
 
     if (password !== confirmPassword) {
       setError("As senhas precisam ser iguais");
@@ -41,18 +41,24 @@ const Register = () => {
     if (!name || !email || !password || !cidade || !estado) {
     // envia os dados do front pro backend
     try {
-      const response = axios.post(`${api_url}/user/criar`, user);
-      navigate('/', { state: { user: response.data, isuser: true } });
+      const response = axios.post(`${api_url}/user/criar`,{
+        name: name,
+        email: email,
+        password: password,
+        cidade: cidade,
+        estado: estado
+      });
+      navigate('/');
+      console.log(response)
     } catch (error) {
       console.error(
-        "Erro ao cadastrar usuário:",
-        error.response?.data || error.message
+        "Erro ao cadastrar usuário:"
       );
       setError("Erro ao cadastrar. Verifique os dados.");
     }
   }
 
-    console.log(user);
+    
   };
 
   return (

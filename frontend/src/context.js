@@ -15,7 +15,7 @@ export const Userprovider = ({ children }) => {
   const handlelogout =  () => {
     const api_url = process.env.REACT_APP_API_URL
     try{
-      axios .post(`${api_url}/logout`,{
+      axios.post(`${api_url}/logout`,{
         access_token:user.session.access_token
       });
 
