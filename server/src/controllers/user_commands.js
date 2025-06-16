@@ -1,4 +1,4 @@
-import { supabase } from "../routers/client";
+import { supabase } from "../routers/client.js";
 
 // Controller para buscar dados da tabela "usuarios"
 export const pegar_dados = async (_, res) => {
@@ -29,7 +29,8 @@ export const criar_usuario = async (req, res) => {
       email: user.email,
       password: user.senha
     });
-
+    
+    // Verifica se houve erro no cadastro
     if (signUpError || !data.user) {
       console.error("Erro no signUp:", signUpError?.message);
       return res.status(400).json({ error: signUpError?.message || "Erro ao cadastrar" });
