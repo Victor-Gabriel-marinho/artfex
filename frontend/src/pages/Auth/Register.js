@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 //Hooks
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../context";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -19,47 +20,38 @@ const Register = () => {
   const [estado, setEstado] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const setUser = useContext(UserContext)
   const navigate = useNavigate();
   const api_url = process.env.REACT_APP_API_URL
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const user = {
-    //   name,
-    //   email,
-    //   password,
-    //   cidade,
-    //   estado
-    // };
-
+    const user = {
+      name,
+      email,
+      password,
+      cidade,
+      estado
+    };
 
     if (password !== confirmPassword) {
       setError("As senhas precisam ser iguais");
       return;
     }
-    if (!name || !email || !password || !cidade || !estado) {
-    // envia os dados do front pro backend
-    try {
-      const response = axios.post(`${api_url}/user/criar`,{
-        name: name,
-        email: email,
-        password: password,
-        cidade: cidade,
-        estado: estado
-      });
-      navigate('/');
-      console.log(response)
-    } catch (error) {
-      console.error(
-        "Erro ao cadastrar usuário:"
-      );
-      setError("Erro ao cadastrar. Verifique os dados.");
-    }
-  }
 
+    axios
+    .post(`${api_url}/user/criar`, user) 
+    .then((response) => {
+      console.log(response.data)
+      navigate('/')
+    })
+    .catch((error) => {
+      console.log("erro ao fazer requisição", error)
+    })
     
   };
+    
 
   return (
     <div className="min-h-screen flex justify-center items-center container">

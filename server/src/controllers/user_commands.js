@@ -22,9 +22,7 @@ export const criar_usuario = async (req, res) => {
     "cidade": req.body.cidade,
     "estado": req.body.estado
   };
-  if (user){
-    res.json(user)
-  }
+
   try {
     // 1. Cadastrar no Supabase Auth
     const { data, error: signUpError } = await supabase.auth.signUp({
@@ -54,12 +52,24 @@ export const criar_usuario = async (req, res) => {
       console.error("Erro ao inserir na tabela personalizada:", insertError.message);
       return res.status(400).json({ error: insertError.message });
     }
-
-    return res.status(200).json({ message: "Usuário criado. Verifique seu email para ativar a conta." });
+   
 
   } catch (err) {
     console.error("Erro inesperado:", err);
     return res.status(500).json({ error: "Erro interno do servidor" });
+  }
+
+  try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password: user.senha
+  })
+    if(error) throw error
+    
+    return res.status(200).json({ message: "Login realizado com sucesso", session: data.session, user: data.user });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+    
   }
 };
 
@@ -90,7 +100,6 @@ export const login_user = async (req, res) => {
       password: user.senha 
 })
     if(error) throw error
-
     
     return res.status(200).json({ message: "Login realizado com sucesso", session: data.session, user: data.user });
   } catch (error) {
