@@ -11,7 +11,6 @@ import Carousel from "../../components/Carousel";
 
 const Home = () => {
   const {user, handlelogout} = useContext(UserContext);
-  console.log(user)
 
   return (
     <div>

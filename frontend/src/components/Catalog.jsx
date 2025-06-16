@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../context";
 import { AiOutlineLoading } from "react-icons/ai";
 import "../resposiveGlobal.css";
+import CartImage from "../assets/images/carrinho-de-compras.png" 
 import { Link } from "react-router-dom";
 
 export default function CatalogComponent(className="") {
@@ -46,7 +47,7 @@ export default function CatalogComponent(className="") {
       });} else {
         setnotuser(true)
       }
-  }, [user?.user?.user?.id, api_url]);
+  }, [user?.user?.id, api_url]);
 
   const get_modal = (produto) => {
     setOpenModal(true);
@@ -72,7 +73,7 @@ export default function CatalogComponent(className="") {
   };
 
   const add_to_cart = () => {
-    const id_user = user.user.user.id
+    const id_user = user.user.id
     const id_product = modalproduto.id;
 
     axios
@@ -168,11 +169,13 @@ export default function CatalogComponent(className="") {
               <div className="flex justify-between gap-2 w-[330px]">
                 {produto_adicionado ? (
                   <div>
+                    <Link to="/cart"> 
                     <p className="bg-[#F2994B] rounded-2xl text-l text-white text-center cursor-pointer"
                        onClick={handleCloseModal}
                     >
-                      Produto adicionado ao seu carrinho.
+                      Visitar carrinho
                     </p>
+                    </Link>
                   </div>
                 ) : erro ? (
                     <p className="bg-red-500 text-white rounded-2xl text-l text-center p-1 cursor-pointer"

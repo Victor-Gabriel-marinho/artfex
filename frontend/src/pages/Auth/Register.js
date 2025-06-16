@@ -20,7 +20,7 @@ const Register = () => {
   const [estado, setEstado] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const setUser = useContext(UserContext)
+  const {setUser} = useContext(UserContext)
   const navigate = useNavigate();
   const api_url = process.env.REACT_APP_API_URL
 
@@ -43,7 +43,9 @@ const Register = () => {
     axios
     .post(`${api_url}/user/criar`, user) 
     .then((response) => {
-      console.log(response.data)
+
+      setUser(response.data)
+
       navigate('/')
     })
     .catch((error) => {
